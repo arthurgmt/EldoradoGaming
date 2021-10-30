@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 708, y: 492}
-  m_MaxSize: {x: 18003, y: 14042}
+  m_MinSize: {x: 709, y: 492}
+  m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 100
+  controlID: 16
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 433, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 0
-  controlID: 101
+  controlID: 17
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 231, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 61
+  controlID: 50
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -268,8 +268,8 @@ MonoBehaviour:
     y: 0
     width: 349
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -344,11 +344,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 889
-      height: 518
-    m_Scale: {x: 0.46302083, y: 0.46302086}
-    m_Translation: {x: 444.5, y: 259}
+      height: 539
+    m_Scale: {x: 0.46302083, y: 0.46302083}
+    m_Translation: {x: 444.5, y: 269.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -356,9 +356,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -960
-      y: -559.37006
+      y: -582.04724
       width: 1920
-      height: 1118.7401
+      height: 1164.0945
     m_MinimalGUI: 1
   m_defaultScale: 0.46302083
   m_LastWindowPixelSize: {x: 889, y: 539}
@@ -396,9 +396,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1e50ffff
-      m_LastClickedID: -45026
-      m_ExpandedIDs: 6afbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: bcfaffff64fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -461,20 +461,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Squadro Objects
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Squadro Objects
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\arthu\OneDrive\Documents\GitHub\EldoradoGaming\Squadro
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 84370000
-    m_LastClickedID: 14212
-    m_ExpandedIDs: 000000007437000000ca9a3b
+    m_SelectedIDs: 82370000
+    m_LastClickedID: 14210
+    m_ExpandedIDs: 000000007237000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -502,7 +502,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000074370000
+    m_ExpandedIDs: 0000000072370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000068300000b4330000ba0a00009e2c000060390000f23a0000b63b0000785a00004e390000364100003a4100003e410000864100008a4100008e41000092410000964100006c4000007040000064400000fe550000224c0000264c00008c58000088580000a45800008e43000092430000964300009a4300009e4300007e430000606c000060480000ae550000406800002a3f0000b83c0000005a00005659000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 8.417013, y: 6.9841137, z: 33.737488}
     speed: 2
-    m_Value: {x: 8.180333, y: 6.419069, z: 33.986893}
+    m_Value: {x: 8.417013, y: 6.9841137, z: 33.737488}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -762,11 +762,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.19049941, y: -0.3116457, z: 0.063640304, w: -0.92879826}
     speed: 2
-    m_Value: {x: -0.1916868, y: -0.31431368, z: 0.06467901, w: -0.9275127}
+    m_Value: {x: -0.19049941, y: -0.3116457, z: 0.063640304, w: -0.92879826}
   m_Size:
     m_Target: 70.225716
     speed: 2
-    m_Value: 67.201645
+    m_Value: 70.225716
   m_Ortho:
     m_Target: 0
     speed: 2
