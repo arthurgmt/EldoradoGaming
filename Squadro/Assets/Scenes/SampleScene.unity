@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1082053091}
+    - target: {fileID: 2033899893512700189, guid: 3d16d7decbbf70b469c2abd972d99720,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 163f87e3fd487ab4191885fe472f1be7, type: 2}
     - target: {fileID: 3529761947201204447, guid: 3d16d7decbbf70b469c2abd972d99720,
         type: 3}
       propertyPath: m_Mesh
@@ -156,7 +161,7 @@ PrefabInstance:
     - target: {fileID: 5073526979902521487, guid: 3d16d7decbbf70b469c2abd972d99720,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.332468
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5073526979902521487, guid: 3d16d7decbbf70b469c2abd972d99720,
         type: 3}
@@ -560,7 +565,7 @@ PrefabInstance:
     - target: {fileID: 7090172883992435477, guid: 4abbe8f903e972740abe40667c91e494,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7090172883992435477, guid: 4abbe8f903e972740abe40667c91e494,
         type: 3}
@@ -580,17 +585,17 @@ PrefabInstance:
     - target: {fileID: 7090172883992435477, guid: 4abbe8f903e972740abe40667c91e494,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7090172883992435477, guid: 4abbe8f903e972740abe40667c91e494,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 37.2
       objectReference: {fileID: 0}
     - target: {fileID: 7090172883992435477, guid: 4abbe8f903e972740abe40667c91e494,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -5.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abbe8f903e972740abe40667c91e494, type: 3}
@@ -763,7 +768,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1194
+  m_Name: pb_Mesh-1210
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
