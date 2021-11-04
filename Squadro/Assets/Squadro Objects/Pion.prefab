@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7090172883992435475}
   - component: {fileID: 7090172883992435474}
   - component: {fileID: 3579867603531584681}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

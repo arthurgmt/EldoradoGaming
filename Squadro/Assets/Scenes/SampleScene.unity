@@ -396,7 +396,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21262
+  m_Name: pb_Mesh23184
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -553,25 +553,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1649383440 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5622090158323162009, guid: 3d16d7decbbf70b469c2abd972d99720,
-    type: 3}
-  m_PrefabInstance: {fileID: 527904442}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1649383441
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649383440}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 56.000004, y: 3, z: 56.000008}
-  m_Center: {x: -0.0000019073486, y: 1.5, z: 7.000003}
 --- !u!1 &1920488133
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,25 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1785445354e08d38e031c0f921a72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPrefab1: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab2: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab3: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab4: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab5: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab6: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab7: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab8: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab9: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab10: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
+  myPrefab: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
 --- !u!4 &1920488135
 Transform:

@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 615805570}
   - component: {fileID: 615805569}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,25 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1785445354e08d38e031c0f921a72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPrefab1: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab2: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab3: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab4: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab5: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab6: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab7: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab8: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab9: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
-    type: 3}
-  myPrefab10: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
+  myPrefab: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
 --- !u!4 &615805570
 Transform:
@@ -190,7 +172,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-25962
+  m_Name: pb_Mesh-41268
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -734,7 +716,7 @@ PrefabInstance:
     - target: {fileID: 5622090158323162009, guid: 3d16d7decbbf70b469c2abd972d99720,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967294
       objectReference: {fileID: 0}
     - target: {fileID: 5622090158323162009, guid: 3d16d7decbbf70b469c2abd972d99720,
         type: 3}
