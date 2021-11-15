@@ -1,0 +1,7 @@
+Vous êtes tous tenu à respecter ce qui suit :
+		* Pour implémenter votre tâche ou fonctionnalité, il faut créer votre branche.
+		* Vous devez créer une scène si vous voulez faire des changements sur une des scènes présentes mais ce n'est pas vous qui l'a créé.
+		* Interdiction de toucher au préfab sans demander sur discord.
+		* Dans le cas ou vous voulez supprimer un asset, une scène...etc qui a été utilisée par d'autres dev il faut demander.
+		* Dans le cas où vous avez créer une scène ou préfab et vous voulez que les autres ne touche pas à ça faite : nomScene_votreNom.unity ou nomPrefab_votreNom.unity
+		* Dans le cas où vous voulez utiliser une scène ou préfab d'une autre personne il faut s'assurer que cette personne n'a plus besoin d'elle ou bien créer un clone de l'objet(prefab..etc), metter votre nom et utiliser le à votre gout.
