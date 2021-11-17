@@ -13,14 +13,13 @@ public class PionMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        p = new PlateauScript();
-        Debug.Log(p);
+        p = GameObject.FindWithTag("Plateau").GetComponent<PlateauScript>();//get the table script.
+        this.gameObject.GetComponent<PlateauScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
     }
 
     void deplacerPion()
