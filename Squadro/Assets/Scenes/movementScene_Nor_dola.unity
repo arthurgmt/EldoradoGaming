@@ -3360,6 +3360,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 3
+  player: 0
+  initialCoordinatesX: 24.05
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 0.51
 --- !u!1001 &565956999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4522,6 +4527,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 1
+  player: 0
+  initialCoordinatesX: 24.05
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: -6.59
 --- !u!1 &841041804
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,6 +4946,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 3
+  player: 0
+  initialCoordinatesX: -7.577124
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 31.03
 --- !u!1001 &956761275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5258,6 +5273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 2
+  player: 0
+  initialCoordinatesX: 24.05
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 7.5
 --- !u!1001 &1037041581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5983,6 +6003,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 1
+  player: 0
+  initialCoordinatesX: 13.6
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 31.03
 --- !u!1001 &1172807089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7538,6 +7563,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 2
+  player: 0
+  initialCoordinatesX: -0.48
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 31.03
 --- !u!1001 &1342156133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8496,6 +8526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 3
+  player: 0
+  initialCoordinatesX: 24.05
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 14.45
 --- !u!43 &1551117047
 Mesh:
   m_ObjectHideFlags: 0
@@ -10074,6 +10109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 3
+  player: 0
+  initialCoordinatesX: 6.47
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 31.03
 --- !u!1001 &2012215731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10569,6 +10609,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 1
+  player: 0
+  initialCoordinatesX: -14.59175
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 31.03
 --- !u!1001 &2117959519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10747,6 +10792,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9107b09ef13cf48a9a2deee35b40ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbDeplacement: 1
+  player: 0
+  initialCoordinatesX: 24.05
+  initialCoordinatesY: 2.8
+  initialCoordinatesZ: 21.5
 --- !u!1001 &2130938078
 PrefabInstance:
   m_ObjectHideFlags: 0

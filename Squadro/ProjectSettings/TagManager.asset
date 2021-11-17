@@ -6,6 +6,7 @@ TagManager:
   tags:
   - move_x
   - move_z
+  - Plateau
   layers:
   - Default
   - TransparentFX
