@@ -6,6 +6,16 @@ TagManager:
   tags:
   - move_x
   - move_z
+  - Pion1
+  - Pion2
+  - Pion3
+  - Pion4
+  - Pion5
+  - Pion6
+  - Pion7
+  - Pion8
+  - Pion9
+  - Pion10
   layers:
   - Default
   - TransparentFX
