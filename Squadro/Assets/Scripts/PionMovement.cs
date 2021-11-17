@@ -13,6 +13,7 @@ public class PionMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        p = new PlateauScript();
         Debug.Log(p);
     }
 
@@ -25,5 +26,11 @@ public class PionMovement : MonoBehaviour
     void deplacerPion()
     {
         
+    }
+
+    public void deplacement_z()
+    {
+        Vector3 z = new Vector3(0.0f, 0.0f, deplacement);
+        transform.localPosition += z;
     }
 }
