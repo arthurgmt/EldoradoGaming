@@ -6,6 +6,7 @@ TagManager:
   tags:
   - move_x
   - move_z
+<<<<<<< HEAD
   - Pion1
   - Pion2
   - Pion3
@@ -16,6 +17,9 @@ TagManager:
   - Pion8
   - Pion9
   - Pion10
+=======
+  - Plateau
+>>>>>>> movesImplementation
   layers:
   - Default
   - TransparentFX
