@@ -26,7 +26,7 @@ public class SelectPion : MonoBehaviour
         }
         selected = true;
         // afficher le bouton
-        GameObject.FindWithTag("GameController").GetComponent<InstantiationExample>().SelectedPion = GameObject.FindWithTag(this.tag);
+        GameObject.FindWithTag("GameController").GetComponent<Plateau>().SelectedPion = GameObject.FindWithTag(this.tag);
 
     }
 
