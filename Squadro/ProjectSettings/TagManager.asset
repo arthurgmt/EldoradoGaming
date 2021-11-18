@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - move_x
-  - move_z
-<<<<<<< HEAD
   - Pion1
   - Pion2
   - Pion3
@@ -17,9 +14,17 @@ TagManager:
   - Pion8
   - Pion9
   - Pion10
-=======
-  - Plateau
->>>>>>> movesImplementation
+  - Pion0alpha
+  - Pion1alpha
+  - Pion2alpha
+  - Pion3alpha
+  - Pion4alpha
+  - Pion5alpha
+  - Pion6alpha
+  - Pion7alpha
+  - Pion8alpha
+  - Pion9alpha
+  - Pion10alpha
   layers:
   - Default
   - TransparentFX
@@ -29,8 +34,8 @@ TagManager:
   - UI
   - 
   - 
-  - broad
-  - pion
+  - 
+  - 
   - 
   - 
   - 
