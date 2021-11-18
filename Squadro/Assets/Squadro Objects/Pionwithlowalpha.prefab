@@ -12,9 +12,6 @@ GameObject:
   - component: {fileID: 3130559076386586688}
   - component: {fileID: 3130559076386586695}
   - component: {fileID: 3130559076386586694}
-  - component: {fileID: 6557180606481332772}
-  - component: {fileID: 9216587652074530703}
-  - component: {fileID: 3464767283664323276}
   m_Layer: 9
   m_Name: Pionwithlowalpha
   m_TagString: Untagged
@@ -869,44 +866,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3130559076386586715}
   m_Mesh: {fileID: 0}
---- !u!65 &6557180606481332772
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3130559076386586715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0, y: 0.8426819, z: 0.30275345}
-  m_Center: {x: 0.6255622, y: 20, z: -2.2514858}
---- !u!114 &9216587652074530703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3130559076386586715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8aa728683b1e9e46ac57689b44a4646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NbCase: 0
---- !u!114 &3464767283664323276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3130559076386586715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ccd06371df2e104d84b5b5154602826, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selected: 0
-  shown: 0
-  Pionwithlowalpha: {fileID: 0}

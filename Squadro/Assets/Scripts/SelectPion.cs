@@ -25,6 +25,8 @@ public class SelectPion : MonoBehaviour
             GameObject.FindWithTag(p).GetComponent<SelectPion>().selected = false;
         }
         selected = true;
+        // afficher le bouton
+        GameObject.FindWithTag("GameController").GetComponent<InstantiationExample>().SelectedPion = GameObject.FindWithTag(this.tag);
 
     }
 
@@ -48,14 +50,22 @@ public class SelectPion : MonoBehaviour
             float x = this.transform.position.x;
             float z = this.transform.position.z - (n * 7);
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
-        }
-        if (t > 0 && t < 90)
+        }else if (t > 0 && t < 90)
         {
             float x = this.transform.position.x - (n * 7);
             float z = this.transform.position.z;
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
+        }else if (t < 0 && t > -90)
+        {
+            float x = this.transform.position.x + (n * 7);
+            float z = this.transform.position.z;
+            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, -90f, 0f)).tag = tag_p;
+        }else
+        {
+            float x = this.transform.position.x;
+            float z = this.transform.position.z + (n * 7);
+            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 180f, 0f)).tag = tag_p;
         }
-
     }
 
     void UnShowMove()
@@ -66,16 +76,4 @@ public class SelectPion : MonoBehaviour
         Destroy(GameObject.FindWithTag(tag_p));
     }
 
-    void DeplacerPion()
-    {
-        int NbCase = this.GetComponent<InitPion>().NbCase;
-        float t = this.transform.rotation.y;
-
-        if (t >= 0 && t < 90)
-        {
-            transform.Translate(0, 0, -(NbCase * 7));
-        }
-        else { transform.Translate(0, 0, (NbCase * 7)); }
-
-    }
 }
