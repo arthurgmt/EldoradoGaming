@@ -910,6 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NbCase: 0
+  MovedCase: 0
 --- !u!114 &8719517759138503064
 MonoBehaviour:
   m_ObjectHideFlags: 0

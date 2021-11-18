@@ -56,7 +56,6 @@ public class SelectPion : MonoBehaviour
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
         }
 
-
     }
 
     void UnShowMove()
@@ -65,5 +64,17 @@ public class SelectPion : MonoBehaviour
         string tag_p = this.tag + "alpha";
         this.GetComponent<Renderer>().material = m_base;
         Destroy(GameObject.FindWithTag(tag_p));
+    }
+
+    void DeplacerPion()
+    {
+        int NbCase = this.GetComponent<InitPion>().NbCase;
+        float t = this.transform.rotation.y;
+
+        if (t >= 0 && t < 90)
+        {
+            transform.Translate(0, 0, -(NbCase * 7));
+        }
+
     }
 }

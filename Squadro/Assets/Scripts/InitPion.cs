@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class InitPion : MonoBehaviour
 {
+    public int NbCase; // Nombre de case à parcourir au prochain coup
+    public int MovedCase = 0; // Cases parcourues par le pion 0 - 6
 
-    public int NbCase;
     // Start is called before the first frame update
     void Start()
     {

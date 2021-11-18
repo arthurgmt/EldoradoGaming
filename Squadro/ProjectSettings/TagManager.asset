@@ -25,6 +25,7 @@ TagManager:
   - Pion8alpha
   - Pion9alpha
   - Pion10alpha
+  - Plateau
   layers:
   - Default
   - TransparentFX
