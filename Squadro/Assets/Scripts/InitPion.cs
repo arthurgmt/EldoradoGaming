@@ -23,7 +23,9 @@ public class InitPion : MonoBehaviour
 
 
         // cas1: ne pas dépasser du plateau
-        NbCase = (NbCase + MovedCase) % 6;
+        if (NbCase + MovedCase > 6)
+            NbCase = MovedCase - 6;
+       
 
         //cas2: si un pion adverse est sur la case d'arrivée du pion
 

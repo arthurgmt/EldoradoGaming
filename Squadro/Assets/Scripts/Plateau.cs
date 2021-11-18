@@ -15,12 +15,12 @@ public class Plateau : MonoBehaviour
         float initialValue = 13.4f;
         for(int i = 0; i < 5; i++)
         {
-            Instantiate(myPrefab, new Vector3(initialValue - i * 7, 3, 31), Quaternion.identity).tag = "Pion" + (i+1) ;
+            Instantiate(myPrefab, new Vector3(initialValue - i * 7, 3, 31), Quaternion.identity).tag = "Pion" + (i+1).ToString();
         }
         initialValue = 21.4f;
         for (int i = 0; i < 5; i++)
         {
-            Instantiate(myPrefab, new Vector3(24, 3, initialValue - i * 7), Quaternion.Euler(0f, 90f, 0f)).tag = "Pion" + (i + 6);
+            Instantiate(myPrefab, new Vector3(24, 3, initialValue - i * 7), Quaternion.Euler(0f, 90f, 0f)).tag = "Pion" + (i + 6).ToString();
         }
     }
 
