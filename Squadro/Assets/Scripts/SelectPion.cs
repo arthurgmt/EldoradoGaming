@@ -75,6 +75,7 @@ public class SelectPion : MonoBehaviour
         {
             transform.Translate(0, 0, -(NbCase * 7));
         }
+        else { transform.Translate(0, 0, (NbCase * 7)); }
 
     }
 }
