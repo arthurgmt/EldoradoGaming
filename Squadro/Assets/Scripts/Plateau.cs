@@ -38,8 +38,8 @@ public class Plateau : MonoBehaviour
         SelectedPion.GetComponent<SelectPion>().selected = false;
 
         if (t >= 0 && t < 90)
-        {   
-             SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
+        {
+            SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
         }
         else { SelectedPion.transform.Translate(0, 0, NbCase * 7); }
 

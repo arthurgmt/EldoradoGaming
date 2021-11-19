@@ -459,7 +459,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5352
+  m_Name: pb_Mesh-3800
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -922,6 +922,7 @@ MonoBehaviour:
   myPrefab: {fileID: 7090172883992435471, guid: 56e172a88db0e724caf4be0cdbf749c5,
     type: 3}
   SelectedPion: {fileID: 0}
+  confirmButton: {fileID: 0}
 --- !u!4 &193225993
 Transform:
   m_ObjectHideFlags: 0
@@ -5885,6 +5886,7 @@ GameObject:
   - component: {fileID: 1820563329}
   - component: {fileID: 1820563328}
   - component: {fileID: 1820563327}
+  - component: {fileID: 1820563330}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5957,6 +5959,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 55.596004, y: 0, z: 0}
+--- !u!114 &1820563330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820563326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6875a91807246ff41b8abb0f81641790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  s: 5
 --- !u!1001 &1856709085
 PrefabInstance:
   m_ObjectHideFlags: 0
