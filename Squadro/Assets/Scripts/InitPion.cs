@@ -18,15 +18,14 @@ public class InitPion : MonoBehaviour
 
     //Gestion du nombre de case à parcourir 
     void Update()
-    {   
+    {
         // cas0: si le pion arrive au bout du plateau le retourner
 
 
         // cas1: ne pas dépasser du plateau
-        while (NbCase + MovedCase > 6)
-        {
-            NbCase--;
-        }
+        if (NbCase + MovedCase > 6)
+            NbCase = MovedCase - 6;
+       
 
         //cas2: si un pion adverse est sur la case d'arrivée du pion
 
