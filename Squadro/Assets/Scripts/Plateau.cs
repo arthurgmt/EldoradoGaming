@@ -6,6 +6,7 @@ public class Plateau : MonoBehaviour
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
     public GameObject myPrefab;
     public GameObject SelectedPion;
+    public GameObject confirmButton;
 
 
     // This script will simply instantiate the Prefab when the game starts.
@@ -38,10 +39,18 @@ public class Plateau : MonoBehaviour
              SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
         }
         else { SelectedPion.transform.Translate(0, 0, NbCase * 7); }
+
         SelectedPion.GetComponent<InitPion>().MovedCase += NbCase;
 
         SelectedPion = null;
+
         // désactiver le bouton
+
+    }
+
+    public void DisableButton()
+    {
+        confirmButton.SetActive(false);
     }
 
 }

@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 362792153}
   - component: {fileID: 362792155}
   - component: {fileID: 362792154}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-21930
+  m_Name: pb_Mesh-1214
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -771,8 +771,8 @@ GameObject:
   - component: {fileID: 1946503652}
   - component: {fileID: 1946503651}
   - component: {fileID: 1946503650}
-  m_Layer: 5
-  m_Name: Button
+  m_Layer: 0
+  m_Name: ConfirmButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9056604, g: 0.2776789, b: 0.2776789, a: 1}
     m_PressedColor: {r: 0.4245283, g: 0.10212708, b: 0.10212708, a: 1}
     m_SelectedColor: {r: 0.9150943, g: 0.19883128, b: 0.16834284, a: 1}
-    m_DisabledColor: {r: 0.9150943, g: 0.19883128, b: 0.16834284, a: 0}
+    m_DisabledColor: {r: 0.8207547, g: 0.72804284, b: 0.7239676, a: 0.54509807}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -980,6 +980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plateau
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622090158323162009, guid: 3d16d7decbbf70b469c2abd972d99720,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d16d7decbbf70b469c2abd972d99720, type: 3}
