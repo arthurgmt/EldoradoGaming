@@ -9,12 +9,13 @@ public class SelectPion : MonoBehaviour
     public bool selected = false;
     public bool shown = false;
     public GameObject Pionwithlowalpha;
+    public Plateau plateau;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        plateau = GameObject.FindWithTag("GameController").GetComponent<Plateau>();
     }
 
     void OnMouseDown()
@@ -25,9 +26,9 @@ public class SelectPion : MonoBehaviour
             GameObject.FindWithTag(p).GetComponent<SelectPion>().selected = false;
         }
         selected = true;
-        // afficher le bouton
         GameObject.FindWithTag("GameController").GetComponent<Plateau>().SelectedPion = GameObject.FindWithTag(this.tag);
-
+        plateau.EnableButton();
+        // afficher le bouton
     }
 
     void Update()
