@@ -46,9 +46,9 @@ public class Plateau : MonoBehaviour
         SelectedPion.GetComponent<InitPion>().MovedCase += NbCase;
 
         SelectedPion = null;
-        DisableButton();
 
         // désactiver le bouton
+        DisableButton();
 
     }
 
