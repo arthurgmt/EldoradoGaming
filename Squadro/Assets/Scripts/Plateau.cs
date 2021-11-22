@@ -11,37 +11,57 @@ public class Plateau : MonoBehaviour
     public GameObject SelectedPion;
     public Button confirmButton;
 
+    public GameObject[] Player1 = new GameObject[5];
+    public GameObject[] Player2 = new GameObject[5];
+    private Dictionary<int, GameObject[]> Dictionary = new Dictionary<int, GameObject[]>();
+    private bool[,] plateau = new bool[7, 7];
+    private float initialValue = 21.4f;
+
 
     // This script will simply instantiate the Prefab when the game starts.
     void Start()
     {
         // Instantiate at position (0, 0, 0) and zero rotation.
-        float initialValue = 13.4f;
         for(int i = 0; i < 5; i++)
         {
-            Instantiate(myPrefab, new Vector3(initialValue - i * 7, 3, 31), Quaternion.identity).tag = "Pion" + (i+1).ToString();
+            this.Player1[i] = Instantiate(myPrefab, new Vector3(24, 3, initialValue - i * 7), Quaternion.Euler(0f, 90f, 0f));
+            this.Player1[i].tag = "Pion" + (4 - i + 1).ToString();
+            this.Player1[i].GetComponent<InitPion>().joueur = 1;
+            this.Player1[i].GetComponent<InitPion>().ligne = 4 - i + 1;
+            this.Player1[i].GetComponent<InitPion>().colonne = 0;
         }
-        initialValue = 21.4f;
+        initialValue = 13.4f;
         for (int i = 0; i < 5; i++)
         {
-            Instantiate(myPrefab, new Vector3(24, 3, initialValue - i * 7), Quaternion.Euler(0f, 90f, 0f)).tag = "Pion" + (i + 6).ToString();
+            this.Player2[i] = Instantiate(myPrefab, new Vector3(initialValue - i * 7, 3, 31), Quaternion.identity); 
+            this.Player2[i].tag = "Pion" + (i + 6).ToString();
+            this.Player2[i].GetComponent<InitPion>().joueur = 2;
+            this.Player2[i].GetComponent<InitPion>().ligne = 6;
+            this.Player2[i].GetComponent<InitPion>().colonne = i+1;
         }
+
+        for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
+        {
+            plateau[i, 0] = true;
+            plateau[6, i] = true;
+        }
+        Dictionary.Add(1, this.Player1);
+        Dictionary.Add(2, this.Player2);
     }
 
     public void DeplacerPion()
     {
         // Get the NbCase available to use in movement.
         int NbCase = SelectedPion.GetComponent<InitPion>().NbCase;
-        // Get 
-        float t = SelectedPion.transform.rotation.y;
-
+        int joueur = SelectedPion.GetComponent<InitPion>().joueur;
         SelectedPion.GetComponent<SelectPion>().selected = false;
+        Debug.Log(SelectedPion.tag);
 
-        if (t >= 0 && t < 90)
+        if (joueur == 1)
         {
             SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
         }
-        else { SelectedPion.transform.Translate(0, 0, NbCase * 7); }
+        else { SelectedPion.transform.Translate(0, 0, -(NbCase * 7)); }
 
         SelectedPion.GetComponent<InitPion>().MovedCase += NbCase;
 
@@ -61,5 +81,6 @@ public class Plateau : MonoBehaviour
     {
         confirmButton.interactable = true;
     }
+
 
 }
