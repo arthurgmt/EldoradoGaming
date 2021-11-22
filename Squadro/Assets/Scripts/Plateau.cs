@@ -17,6 +17,9 @@ public class Plateau : MonoBehaviour
     private bool[,] plateau = new bool[7, 7];
     private float initialValue = 21.4f;
 
+    private int[] arrayOfNbCasesDepart = new int[]{1,3,2,3,1};
+    private int[] arrayOfNbCasesRotate = new int[]{3,1,2,1,3};
+
 
     // This script will simply instantiate the Prefab when the game starts.
     void Start()
@@ -29,6 +32,7 @@ public class Plateau : MonoBehaviour
             this.Player1[i].GetComponent<InitPion>().joueur = 1;
             this.Player1[i].GetComponent<InitPion>().ligne = 4 - i + 1;
             this.Player1[i].GetComponent<InitPion>().colonne = 0;
+            this.Player1[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
         }
         initialValue = 13.4f;
         for (int i = 0; i < 5; i++)
@@ -38,6 +42,7 @@ public class Plateau : MonoBehaviour
             this.Player2[i].GetComponent<InitPion>().joueur = 2;
             this.Player2[i].GetComponent<InitPion>().ligne = 6;
             this.Player2[i].GetComponent<InitPion>().colonne = i+1;
+            this.Player2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
         }
 
         for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
@@ -63,7 +68,7 @@ public class Plateau : MonoBehaviour
         {
             SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
             //il faut après verifier les rotations.
-            for (int col = colonne+1;col <= colonne+NbCase || !collision; col++)
+            /*for (int col = colonne+1;col <= colonne+NbCase || !collision; col++)
             {
                 if (this.plateau[ligne, col])
                 {
@@ -76,7 +81,7 @@ public class Plateau : MonoBehaviour
                         break;
                     }
                 }
-            }
+            }*/
         }
         else { SelectedPion.transform.Translate(0, 0, -(NbCase * 7)); }
 

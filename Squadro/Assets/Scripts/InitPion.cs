@@ -6,72 +6,44 @@ public class InitPion : MonoBehaviour
 {
     public int NbCase; // Nombre de case à parcourir au prochain coup
     public int MovedCase = 0; // Cases parcourues par le pion 0 - 6
-    private float x_position=-18;
-    //private float pos=0.0;
-    private float z_position= -11;
-    private GameObject[] pions_x =  new GameObject[5];
-    private GameObject[] pions_z = new GameObject[5];
-    private GameObject[] s;
-    float speed = 10;
     public int joueur;// 1 : pour le joueur 1 et 2 : pour le joueur 2
-    public int ligne, colonne;
+    public int ligne, colonne;// indique la ligne colonne correspondante.
+    public bool rotated = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (CompareTag("Pion1") | CompareTag("Pion5") | CompareTag("Pion6") | CompareTag("Pion10")) { NbCase = 1; }
-        else if (CompareTag("Pion2") | CompareTag("Pion4") | CompareTag("Pion7") | CompareTag("Pion9")) { NbCase = 3; }
-        else { NbCase = 2; }
 
-        for (int i=6;i<=10;i++){
-            
-            s=GameObject.FindGameObjectsWithTag("Pion"+(i).ToString());
-            
-            pions_x[i-6] =s[0];
-        }
-        for (int i=1;i<=5;i++){
-             s=GameObject.FindGameObjectsWithTag("Pion"+(i).ToString());
-            pions_z[i-1] =s[0];
-        }
     }
 
     //Gestion du nombre de case à parcourir 
     void Update()
     {
         // cas0: si le pion arrive au bout du plateau le retourner
-        
-        //déplacement en x
-         
-        foreach (GameObject Pion in pions_x)
-        {   
-            double pos ;
-            pos = Pion.transform.position.z;
-            pos=pos-1.2;
-            if (Mathf.Abs(Pion.transform.position.x - x_position)<=0.1){
-                //Rotation
-            Pion.transform.localRotation=Quaternion.Euler(0f, -90f , 0f);
-            Pion.transform.position=new Vector3(-24f, 3f, (float)pos);
 
-            
+        if (joueur == 1)//rotation joueur 1
+        {
+            float pos = this.transform.position.z;
+            pos -= 1.2f;
+            if (MovedCase == 6 && !rotated)
+            {//Rotation
+                this.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
+                this.transform.position = new Vector3(-24f, 3f, (float)pos);
+                this.rotated = true;
             }
-         }
-         
-        //Réinitilalisation du nombre de déplacement
-        
-        // deplacement en Z
-        foreach (GameObject Pion in pions_z)
-        {   
-            double pos ;
-            pos = Pion.transform.position.x;
-            pos=pos+1.2;
-            if (Mathf.Abs(Pion.transform.position.z - z_position)<=0.1){
+        }
+        else // rotation joueur 2
+        {
+            float pos =  this.transform.position.x;
+            pos += 1.2f;
+            if (MovedCase == 6 && !rotated)
+            {
                 //Rotation
-            Pion.transform.localRotation=Quaternion.Euler(0f, 180f, 0f);
-            
-            Pion.transform.position=new Vector3((float)pos, 3f, -17f);
-            
+                this.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                this.transform.position = new Vector3((float)pos, 3f, -17f);
+                this.rotated = true;
             }
-         }
+        }
         
         
         
