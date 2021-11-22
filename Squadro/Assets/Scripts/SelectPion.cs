@@ -20,13 +20,13 @@ public class SelectPion : MonoBehaviour
 
     void OnMouseDown()
     {
-        for (int i = 1; i <= 10; i++)
+        for (int i = 0; i < 5; i++)
         {
-            string p = "Pion" + i.ToString();
-            GameObject.FindWithTag(p).GetComponent<SelectPion>().selected = false;
+            this.plateau.Player1[i].GetComponent<SelectPion>().selected = false;
+            this.plateau.Player2[i].GetComponent<SelectPion>().selected = false;
         }
         selected = true;
-        GameObject.FindWithTag("GameController").GetComponent<Plateau>().SelectedPion = GameObject.FindWithTag(this.tag);
+        plateau.SelectedPion = GameObject.FindWithTag(this.tag);
         plateau.EnableButton();
         // afficher le bouton
     }

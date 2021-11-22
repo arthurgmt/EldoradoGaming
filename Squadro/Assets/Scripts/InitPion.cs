@@ -13,6 +13,9 @@ public class InitPion : MonoBehaviour
     private GameObject[] pions_z = new GameObject[5];
     private GameObject[] s;
     float speed = 10;
+    public int joueur;// 1 : pour le joueur 1 et 2 : pour le joueur 2
+    public int ligne, colonne;
+
     // Start is called before the first frame update
     void Start()
     {
