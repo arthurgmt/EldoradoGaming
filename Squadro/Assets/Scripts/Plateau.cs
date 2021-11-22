@@ -54,12 +54,29 @@ public class Plateau : MonoBehaviour
         // Get the NbCase available to use in movement.
         int NbCase = SelectedPion.GetComponent<InitPion>().NbCase;
         int joueur = SelectedPion.GetComponent<InitPion>().joueur;
+        int ligne = SelectedPion.GetComponent<InitPion>().ligne;
+        int colonne = SelectedPion.GetComponent<InitPion>().colonne;
         SelectedPion.GetComponent<SelectPion>().selected = false;
         Debug.Log(SelectedPion.tag);
-
+        bool collision = false;
         if (joueur == 1)
         {
             SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
+            //il faut après verifier les rotations.
+            for (int col = colonne+1;col <= colonne+NbCase || !collision; col++)
+            {
+                if (this.plateau[ligne, col])
+                {
+                    collision = true;
+                }
+                else
+                {
+                    if(collision == true)
+                    {
+                        break;
+                    }
+                }
+            }
         }
         else { SelectedPion.transform.Translate(0, 0, -(NbCase * 7)); }
 
