@@ -41,30 +41,33 @@ public class SelectPion : MonoBehaviour
     {
         shown = true;
         this.GetComponent<Renderer>().material = m_selection;
-        int n = GameObject.FindWithTag(this.tag).GetComponent<InitPion>().NbCase;
+        InitPion pion = this.plateau.SelectedPion.GetComponent<InitPion>();
         float t = this.transform.rotation.y;
         string tag_p = this.tag + "alpha";
-
+        Debug.Log(pion.NbCase);
         // check the rotation
-        if ( t == 0)
+        if (pion.joueur == 1 && !pion.rotated)
         {
-            float x = this.transform.position.x;
-            float z = this.transform.position.z - (n * 7);
-            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
-        }else if (t > 0 && t < 90)
-        {
-            float x = this.transform.position.x - (n * 7);
+            float x = this.transform.position.x - (pion.NbCase * 7);
             float z = this.transform.position.z;
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
-        }else if (t < 0 && t > -90)
+        }   
+        else if (pion.joueur == 1 && pion.rotated)
         {
-            float x = this.transform.position.x + (n * 7);
+            float x = this.transform.position.x + (pion.NbCase * 7);
             float z = this.transform.position.z;
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, -90f, 0f)).tag = tag_p;
-        }else
+        }
+        else if(pion.joueur == 2 && !pion.rotated)
         {
             float x = this.transform.position.x;
-            float z = this.transform.position.z + (n * 7);
+            float z = this.transform.position.z - (pion.NbCase * 7);
+            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
+        }
+        else
+        {
+            float x = this.transform.position.x;
+            float z = this.transform.position.z + (pion.NbCase * 7);
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 180f, 0f)).tag = tag_p;
         }
     }

@@ -54,15 +54,15 @@ public class Plateau : MonoBehaviour
         Dictionary.Add(2, this.Player2);
     }
 
-    public void DeplacerPion()
+    public void DeplacerPion() // A compléter.
     {
         // Get the NbCase available to use in movement.
-        int NbCase = SelectedPion.GetComponent<InitPion>().NbCase;
-        int joueur = SelectedPion.GetComponent<InitPion>().joueur;
-        int ligne = SelectedPion.GetComponent<InitPion>().ligne;
-        int colonne = SelectedPion.GetComponent<InitPion>().colonne;
+        InitPion pion = SelectedPion.GetComponent<InitPion>();
+        int NbCase = pion.NbCase;
+        int joueur = pion.joueur;
+        int ligne = pion.ligne;
+        int colonne = pion.colonne;
         SelectedPion.GetComponent<SelectPion>().selected = false;
-        Debug.Log(SelectedPion.tag);
         bool collision = false;
         if (joueur == 1)
         {
@@ -85,13 +85,37 @@ public class Plateau : MonoBehaviour
         }
         else { SelectedPion.transform.Translate(0, 0, -(NbCase * 7)); }
 
-        SelectedPion.GetComponent<InitPion>().MovedCase += NbCase;
+        pion.MovedCase += NbCase;
+        if(pion.MovedCase == 6)
+        {
+            this.RotatePion();
+        }
+        /*if (pion.NbCase + pion.MovedCase > 6)
+            pion.NbCase = pion.MovedCase - 6;*/
 
         SelectedPion = null;
-        DisableButton();
+        DisableButton();//désactiver le bouton.
 
-        // désactiver le bouton
+    }
 
+    private void RotatePion()
+    {
+        InitPion pion = SelectedPion.GetComponent<InitPion>();
+        if (pion.joueur == 1)//rotation joueur 1
+        {
+            float pos = pion.transform.position.z;
+            pion.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+            pion.transform.position = new Vector3(-24f, 3f, pos-0.95f);
+            pion.NbCase = this.arrayOfNbCasesRotate[pion.ligne - 1];
+        }
+        else // rotation joueur 2
+        {
+            float pos = pion.transform.position.x;
+            pion.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            pion.transform.position = new Vector3(pos+0.95f, 3f, -17f);
+            pion.NbCase = this.arrayOfNbCasesRotate[pion.colonne - 1];
+        }
+        pion.rotated = true;
     }
 
     public void DisableButton()

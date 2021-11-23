@@ -17,43 +17,11 @@ public class InitPion : MonoBehaviour
     }
 
     //Gestion du nombre de case à parcourir 
-    void Update()
+    void Update()// ne pas mettre ici de code SVP car ca recharge après chaque frame ce qui rend l'application lourde.
     {
         // cas0: si le pion arrive au bout du plateau le retourner
-
-        if (joueur == 1)//rotation joueur 1
-        {
-            float pos = this.transform.position.z;
-            pos -= 1.2f;
-            if (MovedCase == 6 && !rotated)
-            {//Rotation
-                this.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
-                this.transform.position = new Vector3(-24f, 3f, (float)pos);
-                this.rotated = true;
-            }
-        }
-        else // rotation joueur 2
-        {
-            float pos =  this.transform.position.x;
-            pos += 1.2f;
-            if (MovedCase == 6 && !rotated)
-            {
-                //Rotation
-                this.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                this.transform.position = new Vector3((float)pos, 3f, -17f);
-                this.rotated = true;
-            }
-        }
-        
-        
-        
         // cas1: ne pas dépasser du plateau
-        if (NbCase + MovedCase > 6)
-            NbCase = MovedCase - 6;
-       
-
         //cas2: si un pion adverse est sur la case d'arrivée du pion
-
     }
 
 }
