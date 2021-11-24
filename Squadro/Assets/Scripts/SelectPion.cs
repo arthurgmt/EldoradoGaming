@@ -45,29 +45,30 @@ public class SelectPion : MonoBehaviour
         float t = this.transform.rotation.y;
         string tag_p = this.tag + "alpha";
         Debug.Log(pion.NbCase);
+        int deplacement = pion.MovedCase + pion.NbCase <= 6 ? pion.NbCase : 6 - pion.MovedCase; 
         // check the rotation
         if (pion.joueur == 1 && !pion.rotated)
         {
-            float x = this.transform.position.x - (pion.NbCase * 7);
+            float x = this.transform.position.x - (deplacement * 7);
             float z = this.transform.position.z;
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
         }   
         else if (pion.joueur == 1 && pion.rotated)
         {
-            float x = this.transform.position.x + (pion.NbCase * 7);
+            float x = this.transform.position.x + (deplacement * 7);
             float z = this.transform.position.z;
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, -90f, 0f)).tag = tag_p;
         }
         else if(pion.joueur == 2 && !pion.rotated)
         {
             float x = this.transform.position.x;
-            float z = this.transform.position.z - (pion.NbCase * 7);
+            float z = this.transform.position.z - (deplacement * 7);
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
         }
         else
         {
             float x = this.transform.position.x;
-            float z = this.transform.position.z + (pion.NbCase * 7);
+            float z = this.transform.position.z + (deplacement * 7);
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 180f, 0f)).tag = tag_p;
         }
     }

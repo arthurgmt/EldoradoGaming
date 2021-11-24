@@ -75,7 +75,7 @@ public class Plateau : MonoBehaviour
             //il faut après verifier les rotations.
             if (!pion.rotated) {
                 parcours = colonne + 1;
-                while (parcours <= colonne + NbCase || collision)
+                while ((parcours <= colonne + NbCase || collision) && parcours <= 6)
                 {
                     collision = this.plateau[ligne, parcours];
                     parcours++;
@@ -87,17 +87,16 @@ public class Plateau : MonoBehaviour
             else
             {
 				parcours = colonne - 1;
-                while (parcours >= colonne - NbCase || collision)
+                while ((parcours >= colonne - NbCase || collision) && parcours >= 0) 
                 {
                     collision = this.plateau[ligne, parcours];
                     parcours--;
                 }
                 SelectedPion.transform.Translate(0, 0, -( colonne - parcours - 1) * 7);
-                pion.colonne -= colonne - parcours + 1;
-                pion.MovedCase += colonne - parcours + 1;
+                pion.colonne -= colonne - parcours - 1;
+                pion.MovedCase += colonne - parcours - 1;
             }
-            
-           
+            this.plateau[pion.ligne, pion.colonne] = true;
         }
         else { 
             SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
@@ -107,13 +106,17 @@ public class Plateau : MonoBehaviour
         }
         this.plateau[ligne, colonne] = false;
         if(pion.MovedCase == 6)
-        {
-            this.RotatePion();
-        }
-        /*if (pion.NbCase + pion.MovedCase > 6)
+		{
+            if (!pion.rotated)
+                this.RotatePion();
+            else {
+                this.SelectedPion.SetActive(false);
+            } // le pion a fait un tour.
+		}
+		/*if (pion.NbCase + pion.MovedCase > 6)
             pion.NbCase = pion.MovedCase - 6;*/
 
-        SelectedPion = null;
+		SelectedPion = null;
         DisableButton();//désactiver le bouton.
 
     }
@@ -137,6 +140,7 @@ public class Plateau : MonoBehaviour
         }
         pion.absolutePosition = pion.transform.position;// setter le point absolue du parcours.
         pion.rotated = true;
+        pion.MovedCase = 0;
     }
 
     public void DisableButton()
