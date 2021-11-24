@@ -86,13 +86,13 @@ public class Plateau : MonoBehaviour
             }
             else
             {
-                parcours = colonne - 1;
+				parcours = colonne - 1;
                 while (parcours >= colonne - NbCase || collision)
                 {
                     collision = this.plateau[ligne, parcours];
                     parcours--;
                 }
-                SelectedPion.transform.Translate(0, 0, -( colonne - parcours + 1) * 7);
+                SelectedPion.transform.Translate(0, 0, -( colonne - parcours - 1) * 7);
                 pion.colonne -= colonne - parcours + 1;
                 pion.MovedCase += colonne - parcours + 1;
             }

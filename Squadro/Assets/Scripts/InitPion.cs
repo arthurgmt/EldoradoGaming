@@ -14,7 +14,7 @@ public class InitPion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+    
     }
 
     //Gestion du nombre de case à parcourir 
