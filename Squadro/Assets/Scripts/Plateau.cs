@@ -25,11 +25,14 @@ public class Plateau : MonoBehaviour
     void Start()
     {
         // Instantiate at position (0, 0, 0) and zero rotation.
+        Vector3 v1;
         for(int i = 0; i < 5; i++)
         {
-            this.Player1[i] = Instantiate(myPrefab, new Vector3(24, 3, initialValue - i * 7), Quaternion.Euler(0f, 90f, 0f));
+            v1 = new Vector3(24, 3, initialValue - i * 7);
+            this.Player1[i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
             this.Player1[i].tag = "Pion" + (4 - i + 1).ToString();
             this.Player1[i].GetComponent<InitPion>().joueur = 1;
+            this.Player1[i].GetComponent<InitPion>().absolutePosition = v1;
             this.Player1[i].GetComponent<InitPion>().ligne = 4 - i + 1;
             this.Player1[i].GetComponent<InitPion>().colonne = 0;
             this.Player1[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
@@ -37,9 +40,11 @@ public class Plateau : MonoBehaviour
         initialValue = 13.4f;
         for (int i = 0; i < 5; i++)
         {
-            this.Player2[i] = Instantiate(myPrefab, new Vector3(initialValue - i * 7, 3, 31), Quaternion.identity); 
+            v1 = new Vector3(initialValue - i * 7, 3, 31);
+            this.Player2[i] = Instantiate(myPrefab, v1, Quaternion.identity); 
             this.Player2[i].tag = "Pion" + (i + 6).ToString();
             this.Player2[i].GetComponent<InitPion>().joueur = 2;
+            this.Player2[i].GetComponent<InitPion>().absolutePosition = v1;
             this.Player2[i].GetComponent<InitPion>().ligne = 6;
             this.Player2[i].GetComponent<InitPion>().colonne = i+1;
             this.Player2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
@@ -64,28 +69,43 @@ public class Plateau : MonoBehaviour
         int colonne = pion.colonne;
         SelectedPion.GetComponent<SelectPion>().selected = false;
         bool collision = false;
+        int parcours;
         if (joueur == 1)
         {
-            SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
             //il faut après verifier les rotations.
-            /*for (int col = colonne+1;col <= colonne+NbCase || !collision; col++)
+            if (!pion.rotated) {
+                parcours = colonne + 1;
+                while (parcours <= colonne + NbCase || collision)
+                {
+                    collision = this.plateau[ligne, parcours];
+                    parcours++;
+                }
+                SelectedPion.transform.Translate(0, 0, -(parcours - colonne - 1) * 7);
+                pion.colonne += parcours - colonne - 1;
+                pion.MovedCase += parcours - colonne - 1;
+            }
+            else
             {
-                if (this.plateau[ligne, col])
+                parcours = colonne - 1;
+                while (parcours >= colonne - NbCase || collision)
                 {
-                    collision = true;
+                    collision = this.plateau[ligne, parcours];
+                    parcours--;
                 }
-                else
-                {
-                    if(collision == true)
-                    {
-                        break;
-                    }
-                }
-            }*/
+                SelectedPion.transform.Translate(0, 0, -( colonne - parcours + 1) * 7);
+                pion.colonne -= colonne - parcours + 1;
+                pion.MovedCase += colonne - parcours + 1;
+            }
+            
+           
         }
-        else { SelectedPion.transform.Translate(0, 0, -(NbCase * 7)); }
+        else { 
+            SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
+            this.plateau[ligne - NbCase, colonne] = true;
+            pion.MovedCase += NbCase;
 
-        pion.MovedCase += NbCase;
+        }
+        this.plateau[ligne, colonne] = false;
         if(pion.MovedCase == 6)
         {
             this.RotatePion();
@@ -105,16 +125,17 @@ public class Plateau : MonoBehaviour
         {
             float pos = pion.transform.position.z;
             pion.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-            pion.transform.position = new Vector3(-24f, 3f, pos-0.95f);
+            pion.transform.position = new Vector3(-24f, 3f, pos-1f);
             pion.NbCase = this.arrayOfNbCasesRotate[pion.ligne - 1];
         }
         else // rotation joueur 2
         {
             float pos = pion.transform.position.x;
             pion.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            pion.transform.position = new Vector3(pos+0.95f, 3f, -17f);
+            pion.transform.position = new Vector3(pos+1f, 3f, -17f);
             pion.NbCase = this.arrayOfNbCasesRotate[pion.colonne - 1];
         }
+        pion.absolutePosition = pion.transform.position;// setter le point absolue du parcours.
         pion.rotated = true;
     }
 

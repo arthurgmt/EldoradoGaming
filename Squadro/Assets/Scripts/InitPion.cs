@@ -9,6 +9,7 @@ public class InitPion : MonoBehaviour
     public int joueur;// 1 : pour le joueur 1 et 2 : pour le joueur 2
     public int ligne, colonne;// indique la ligne colonne correspondante.
     public bool rotated = false;
+    public Vector3 absolutePosition;
 
     // Start is called before the first frame update
     void Start()
