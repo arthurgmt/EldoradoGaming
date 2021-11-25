@@ -137,7 +137,7 @@ public class Plateau : MonoBehaviour
                     collision = this.plateau[parcours, colonne];
                     parcours++;
                     if (collision)
-                        resetInitialPosition(this.Player1, parcours,parcours-1,colonne);
+                        resetInitialPosition(this.Player1, parcours - 2,parcours-1,colonne);
                     else if (sauvCollision)
                         break;
                 }
