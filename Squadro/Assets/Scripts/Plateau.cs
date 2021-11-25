@@ -70,7 +70,7 @@ public class Plateau : MonoBehaviour
         SelectedPion.GetComponent<SelectPion>().selected = false;
         bool collision = false;
         bool sauvCollision = false;
-        int parcours;
+        int parcours,deplacement;
         if (joueur == 1)
         {
             //il faut après verifier les rotations.
@@ -84,9 +84,8 @@ public class Plateau : MonoBehaviour
                     if (sauvCollision && !collision)
                         break;
                 }
-                SelectedPion.transform.Translate(0, 0, -(parcours - colonne - 1) * 7);
-                pion.colonne += parcours - colonne - 1;
-                pion.MovedCase += parcours - colonne - 1;
+                deplacement = parcours - colonne - 1;
+                pion.colonne += deplacement;
             }
             else
             {
@@ -98,9 +97,8 @@ public class Plateau : MonoBehaviour
                     if (sauvCollision && !collision)
                         break;
                 }
-                SelectedPion.transform.Translate(0, 0, -( colonne - parcours - 1) * 7);
-                pion.colonne -= colonne - parcours - 1;
-                pion.MovedCase += colonne - parcours - 1;
+                deplacement = colonne - parcours - 1;
+                pion.colonne -= deplacement;
             }
         }
         else {
@@ -114,9 +112,8 @@ public class Plateau : MonoBehaviour
                     if (sauvCollision && !collision)
                         break;
                 }
-                SelectedPion.transform.Translate(0, 0, -(ligne - parcours - 1) * 7);
-                pion.ligne -= ligne - parcours - 1;
-                pion.MovedCase += ligne - parcours - 1;
+                deplacement = ligne - parcours - 1;
+                pion.ligne -= deplacement;
             }
             else
             {
@@ -128,11 +125,12 @@ public class Plateau : MonoBehaviour
                     if (sauvCollision && !collision)
                         break;
                 }
-                SelectedPion.transform.Translate(0, 0, -(parcours - ligne - 1) * 7);
-                pion.ligne += parcours - ligne - 1;
-                pion.MovedCase += parcours - ligne - 1;
+                deplacement = parcours - ligne - 1;
+                pion.ligne += deplacement;
             }
         }
+        pion.MovedCase += deplacement;
+        SelectedPion.transform.Translate(0, 0, -deplacement * 7);
         this.plateau[pion.ligne, pion.colonne] = true;
         this.plateau[ligne, colonne] = false;
         if(pion.MovedCase == 6)
