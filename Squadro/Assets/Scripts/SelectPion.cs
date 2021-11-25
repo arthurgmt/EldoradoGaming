@@ -73,7 +73,7 @@ public class SelectPion : MonoBehaviour
         }
     }
 
-    void UnShowMove()
+    public void UnShowMove()
     {
         shown = false;
         string tag_p = this.tag + "alpha";

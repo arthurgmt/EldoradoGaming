@@ -96,14 +96,34 @@ public class Plateau : MonoBehaviour
                 pion.colonne -= colonne - parcours - 1;
                 pion.MovedCase += colonne - parcours - 1;
             }
-            this.plateau[pion.ligne, pion.colonne] = true;
         }
-        else { 
-            SelectedPion.transform.Translate(0, 0, -(NbCase * 7));
-            this.plateau[ligne - NbCase, colonne] = true;
-            pion.MovedCase += NbCase;
-
+        else {
+            if (!pion.rotated)
+            {            
+                parcours = ligne - 1;
+                while ((parcours >= ligne - NbCase || collision) && parcours >= 0)
+                {
+                    collision = this.plateau[parcours, colonne];
+                    parcours--;
+                }
+                SelectedPion.transform.Translate(0, 0, -(ligne - parcours - 1) * 7);
+                pion.ligne -= ligne - parcours - 1;
+                pion.MovedCase += ligne - parcours - 1;
+            }
+            else
+            {
+                parcours = ligne + 1;
+                while ((parcours <= ligne + NbCase || collision) && parcours <= 6)
+                {
+                    collision = this.plateau[parcours, colonne];
+                    parcours++;
+                }
+                SelectedPion.transform.Translate(0, 0, -(parcours - ligne - 1) * 7);
+                pion.ligne += parcours - ligne - 1;
+                pion.MovedCase += parcours - ligne - 1;
+            }
         }
+        this.plateau[pion.ligne, pion.colonne] = true;
         this.plateau[ligne, colonne] = false;
         if(pion.MovedCase == 6)
 		{
@@ -111,6 +131,7 @@ public class Plateau : MonoBehaviour
                 this.RotatePion();
             else {
                 this.SelectedPion.SetActive(false);
+                this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
             } // le pion a fait un tour.
 		}
 		/*if (pion.NbCase + pion.MovedCase > 6)
