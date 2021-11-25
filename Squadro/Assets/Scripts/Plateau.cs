@@ -69,6 +69,7 @@ public class Plateau : MonoBehaviour
         int colonne = pion.colonne;
         SelectedPion.GetComponent<SelectPion>().selected = false;
         bool collision = false;
+        bool sauvCollision = false;
         int parcours;
         if (joueur == 1)
         {
@@ -77,8 +78,11 @@ public class Plateau : MonoBehaviour
                 parcours = colonne + 1;
                 while ((parcours <= colonne + NbCase || collision) && parcours <= 6)
                 {
+                    sauvCollision = collision;
                     collision = this.plateau[ligne, parcours];
                     parcours++;
+                    if (sauvCollision && !collision)
+                        break;
                 }
                 SelectedPion.transform.Translate(0, 0, -(parcours - colonne - 1) * 7);
                 pion.colonne += parcours - colonne - 1;
@@ -91,6 +95,8 @@ public class Plateau : MonoBehaviour
                 {
                     collision = this.plateau[ligne, parcours];
                     parcours--;
+                    if (sauvCollision && !collision)
+                        break
                 }
                 SelectedPion.transform.Translate(0, 0, -( colonne - parcours - 1) * 7);
                 pion.colonne -= colonne - parcours - 1;
@@ -105,6 +111,8 @@ public class Plateau : MonoBehaviour
                 {
                     collision = this.plateau[parcours, colonne];
                     parcours--;
+                    if (sauvCollision && !collision)
+                        break
                 }
                 SelectedPion.transform.Translate(0, 0, -(ligne - parcours - 1) * 7);
                 pion.ligne -= ligne - parcours - 1;
@@ -117,6 +125,8 @@ public class Plateau : MonoBehaviour
                 {
                     collision = this.plateau[parcours, colonne];
                     parcours++;
+                    if (sauvCollision && !collision)
+                        break
                 }
                 SelectedPion.transform.Translate(0, 0, -(parcours - ligne - 1) * 7);
                 pion.ligne += parcours - ligne - 1;
