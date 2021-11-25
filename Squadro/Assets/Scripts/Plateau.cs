@@ -29,13 +29,15 @@ public class Plateau : MonoBehaviour
         for(int i = 0; i < 5; i++)
         {
             v1 = new Vector3(24, 3, initialValue - i * 7);
-            this.Player1[i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
-            this.Player1[i].tag = "Pion" + (4 - i + 1).ToString();
-            this.Player1[i].GetComponent<InitPion>().joueur = 1;
-            this.Player1[i].GetComponent<InitPion>().absolutePosition = v1;
-            this.Player1[i].GetComponent<InitPion>().ligne = 4 - i + 1;
-            this.Player1[i].GetComponent<InitPion>().colonne = 0;
-            this.Player1[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            this.Player1[4 - i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
+            this.Player1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
+            this.Player1[4 - i].GetComponent<InitPion>().joueur = 1;
+            this.Player1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
+            this.Player1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
+            this.Player1[4 - i].GetComponent<InitPion>().colonne = 0;
+            this.Player1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            this.Player1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
+            this.Player1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
         }
         initialValue = 13.4f;
         for (int i = 0; i < 5; i++)
@@ -48,6 +50,8 @@ public class Plateau : MonoBehaviour
             this.Player2[i].GetComponent<InitPion>().ligne = 6;
             this.Player2[i].GetComponent<InitPion>().colonne = i+1;
             this.Player2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            this.Player2[i].GetComponent<InitPion>().absoluteLigne = 6;
+            this.Player2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
         }
 
         for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
@@ -81,7 +85,10 @@ public class Plateau : MonoBehaviour
                     sauvCollision = collision;
                     collision = this.plateau[ligne, parcours];
                     parcours++;
-                    if (sauvCollision && !collision)
+                    if (collision) {
+                        resetInitialPosition(this.Player2, parcours - 2, ligne, parcours - 1);
+                    }
+                    else if (sauvCollision)
                         break;
                 }
                 deplacement = parcours - colonne - 1;
@@ -92,9 +99,12 @@ public class Plateau : MonoBehaviour
 				parcours = colonne - 1;
                 while ((parcours >= colonne - NbCase || collision) && parcours >= 0) 
                 {
+                    sauvCollision = collision;
                     collision = this.plateau[ligne, parcours];
                     parcours--;
-                    if (sauvCollision && !collision)
+                    if (collision)
+                        resetInitialPosition(this.Player2, parcours,ligne,parcours+1);
+                    else if (sauvCollision)
                         break;
                 }
                 deplacement = colonne - parcours - 1;
@@ -107,9 +117,12 @@ public class Plateau : MonoBehaviour
                 parcours = ligne - 1;
                 while ((parcours >= ligne - NbCase || collision) && parcours >= 0)
                 {
+                    sauvCollision = collision;
                     collision = this.plateau[parcours, colonne];
                     parcours--;
-                    if (sauvCollision && !collision)
+                    if (collision)
+                        resetInitialPosition(this.Player1, parcours,parcours+1,colonne);
+                    else if (sauvCollision)
                         break;
                 }
                 deplacement = ligne - parcours - 1;
@@ -120,9 +133,12 @@ public class Plateau : MonoBehaviour
                 parcours = ligne + 1;
                 while ((parcours <= ligne + NbCase || collision) && parcours <= 6)
                 {
+                    sauvCollision = collision;
                     collision = this.plateau[parcours, colonne];
                     parcours++;
-                    if (sauvCollision && !collision)
+                    if (collision)
+                        resetInitialPosition(this.Player1, parcours,parcours-1,colonne);
+                    else if (sauvCollision)
                         break;
                 }
                 deplacement = parcours - ligne - 1;
@@ -142,8 +158,6 @@ public class Plateau : MonoBehaviour
                 this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
             } // le pion a fait un tour.
 		}
-		/*if (pion.NbCase + pion.MovedCase > 6)
-            pion.NbCase = pion.MovedCase - 6;*/
 
 		SelectedPion = null;
         DisableButton();//désactiver le bouton.
@@ -159,6 +173,7 @@ public class Plateau : MonoBehaviour
             pion.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             pion.transform.position = new Vector3(-24f, 3f, pos-1f);
             pion.NbCase = this.arrayOfNbCasesRotate[pion.ligne - 1];
+            pion.absoluteColonne = 6;
         }
         else // rotation joueur 2
         {
@@ -166,6 +181,7 @@ public class Plateau : MonoBehaviour
             pion.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             pion.transform.position = new Vector3(pos+1f, 3f, -17f);
             pion.NbCase = this.arrayOfNbCasesRotate[pion.colonne - 1];
+            pion.absoluteLigne = 0;
         }
         pion.absolutePosition = pion.transform.position;// setter le point absolue du parcours.
         pion.rotated = true;
@@ -182,5 +198,16 @@ public class Plateau : MonoBehaviour
         confirmButton.interactable = true;
     }
 
+    private void resetInitialPosition(GameObject[] playerArray,int index,int ligne,int colonne)
+    {
+        InitPion pion = playerArray[index].GetComponent<InitPion>();
+        Vector3 temp = pion.absolutePosition;
+        pion.MovedCase = 0;
+        playerArray[index].transform.position = temp;
+        this.plateau[ligne, colonne] = false;
+        this.plateau[pion.absoluteLigne,pion.absoluteColonne] = true;
+        pion.ligne = pion.absoluteLigne;
+        pion.colonne = pion.absoluteColonne;
+    }
 
 }

@@ -10,6 +10,7 @@ public class InitPion : MonoBehaviour
     public int ligne, colonne;// indique la ligne colonne correspondante.
     public bool rotated = false;
     public Vector3 absolutePosition;
+    public int absoluteLigne, absoluteColonne;
 
     // Start is called before the first frame update
     void Start()
