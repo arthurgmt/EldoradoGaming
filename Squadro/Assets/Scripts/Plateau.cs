@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Plateau : MonoBehaviour 
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
+    public Camera mainCam; // 2d 
+    public Camera cam; //3d
     public GameObject myPrefab;
     public GameObject SelectedPion;
     public Button confirmButton;
@@ -24,6 +26,11 @@ public class Plateau : MonoBehaviour
     // This script will simply instantiate the Prefab when the game starts.
     void Start()
     {
+        // Camera Setup
+        cam.enabled = true;
+        mainCam.enabled = false;
+        
+
         // Instantiate at position (0, 0, 0) and zero rotation.
         Vector3 v1;
         for(int i = 0; i < 5; i++)
@@ -209,5 +216,4 @@ public class Plateau : MonoBehaviour
         pion.ligne = pion.absoluteLigne;
         pion.colonne = pion.absoluteColonne;
     }
-
 }
