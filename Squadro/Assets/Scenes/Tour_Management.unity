@@ -563,6 +563,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  tourJoueur: 0
 --- !u!4 &682109286
 Transform:
   m_ObjectHideFlags: 0
@@ -694,7 +695,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835149301}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &835149304
 Camera:
   m_ObjectHideFlags: 0

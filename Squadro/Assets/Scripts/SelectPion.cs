@@ -7,7 +7,6 @@ public class SelectPion : MonoBehaviour
     public Material m_base;
     public Material m_selection;
     public bool selected = false;
-    public bool shown = false;
     public GameObject Pionwithlowalpha;
     public Plateau plateau;
 
@@ -26,16 +25,16 @@ public class SelectPion : MonoBehaviour
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    this.plateau.Player1[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.Player1[i].GetComponent<SelectPion>().UnShowMove();
+                    this.plateau.partie.player1.pions[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.partie.player1.pions[i].GetComponent<SelectPion>().UnShowMove();
                 }
             }
             else
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    this.plateau.Player2[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.Player2[i].GetComponent<SelectPion>().UnShowMove();
+                    this.plateau.partie.player2.pions[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.partie.player2.pions[i].GetComponent<SelectPion>().UnShowMove();
                 }
             }
             selected = true;
@@ -47,13 +46,10 @@ public class SelectPion : MonoBehaviour
 
     void Update()
     {
-        if ((selected == true) && (shown == false)) {  }
-        else if ((selected == false) && (shown == true)) { UnShowMove(); }
     }
 
     void ShowMove()
     {
-        shown = true;
         this.GetComponent<Renderer>().material = m_selection;
         InitPion pion = this.plateau.SelectedPion.GetComponent<InitPion>();
         float t = this.transform.rotation.y;
@@ -89,7 +85,6 @@ public class SelectPion : MonoBehaviour
 
     public void UnShowMove()
     {
-        shown = false;
         string tag_p = this.tag + "alpha";
         this.GetComponent<Renderer>().material = m_base;
         Destroy(GameObject.FindWithTag(tag_p));

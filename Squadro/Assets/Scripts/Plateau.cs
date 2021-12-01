@@ -13,53 +13,54 @@ public class Plateau : MonoBehaviour
     public GameObject SelectedPion;
     public Button confirmButton;
 
-    public GameObject[] Player1 = new GameObject[5];
-    public GameObject[] Player2 = new GameObject[5];
+    //public GameObject[] Player1 = new GameObject[5];
+    //public GameObject[] Player2 = new GameObject[5];
     private bool[,] plateau = new bool[7, 7];
-    private float initialValue = 21.4f;
-
+    
     private int[] arrayOfNbCasesDepart = new int[]{1,3,2,3,1};
     private int[] arrayOfNbCasesRotate = new int[]{3,1,2,1,3};
 
     public int tourJoueur;// désigne le tour.
-
+    public Partie partie;
 
     // This script will simply instantiate the Prefab when the game starts.
     void Start()
     {
+         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
         mainCam.enabled = false;
         
-
         // Instantiate at position (0, 0, 0) and zero rotation.
         Vector3 v1;
+        GameObject[] pionsP1 = new GameObject[5];
+        GameObject[] pionsP2 = new GameObject[5];
         for(int i = 0; i < 5; i++)
         {
             v1 = new Vector3(24, 3, initialValue - i * 7);
-            this.Player1[4 - i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
-            this.Player1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
-            this.Player1[4 - i].GetComponent<InitPion>().joueur = 1;
-            this.Player1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
-            this.Player1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
-            this.Player1[4 - i].GetComponent<InitPion>().colonne = 0;
-            this.Player1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-            this.Player1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
-            this.Player1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
+            pionsP1[4 - i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
+            pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
+            pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
+            pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
+            pionsP1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
+            pionsP1[4 - i].GetComponent<InitPion>().colonne = 0;
+            pionsP1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            pionsP1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
+            pionsP1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
         }
         initialValue = 13.4f;
         for (int i = 0; i < 5; i++)
         {
             v1 = new Vector3(initialValue - i * 7, 3, 31);
-            this.Player2[i] = Instantiate(myPrefab, v1, Quaternion.identity); 
-            this.Player2[i].tag = "Pion" + (i + 6).ToString();
-            this.Player2[i].GetComponent<InitPion>().joueur = 2;
-            this.Player2[i].GetComponent<InitPion>().absolutePosition = v1;
-            this.Player2[i].GetComponent<InitPion>().ligne = 6;
-            this.Player2[i].GetComponent<InitPion>().colonne = i+1;
-            this.Player2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-            this.Player2[i].GetComponent<InitPion>().absoluteLigne = 6;
-            this.Player2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
+            pionsP2[i] = Instantiate(myPrefab, v1, Quaternion.identity);
+            pionsP2[i].tag = "Pion" + (i + 6).ToString();
+            pionsP2[i].GetComponent<InitPion>().joueur = 2;
+            pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
+            pionsP2[i].GetComponent<InitPion>().ligne = 6;
+            pionsP2[i].GetComponent<InitPion>().colonne = i+1;
+            pionsP2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
+            pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
         }
 
         for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
@@ -68,6 +69,7 @@ public class Plateau : MonoBehaviour
             plateau[6, i] = true;
         }
         this.tourJoueur = 1;
+        this.partie = new Partie(this, new Player(pionsP1), new Player(pionsP2));
     }
 
     public void DeplacerPion() // A compléter.
@@ -93,7 +95,7 @@ public class Plateau : MonoBehaviour
                     collision = this.plateau[ligne, parcours];
                     parcours++;
                     if (collision) {
-                        resetInitialPosition(this.Player2, parcours - 2, ligne, parcours - 1);
+                        resetInitialPosition(this.partie.player2.pions, parcours - 2, ligne, parcours - 1);
                     }
                     else if (sauvCollision)
                         break;
@@ -110,7 +112,7 @@ public class Plateau : MonoBehaviour
                     collision = this.plateau[ligne, parcours];
                     parcours--;
                     if (collision)
-                        resetInitialPosition(this.Player2, parcours,ligne,parcours+1);
+                        resetInitialPosition(this.partie.player2.pions, parcours,ligne,parcours+1);
                     else if (sauvCollision)
                         break;
                 }
@@ -128,7 +130,7 @@ public class Plateau : MonoBehaviour
                     collision = this.plateau[parcours, colonne];
                     parcours--;
                     if (collision)
-                        resetInitialPosition(this.Player1, parcours,parcours+1,colonne);
+                        resetInitialPosition(this.partie.player1.pions, parcours,parcours+1,colonne);
                     else if (sauvCollision)
                         break;
                 }
@@ -144,7 +146,7 @@ public class Plateau : MonoBehaviour
                     collision = this.plateau[parcours, colonne];
                     parcours++;
                     if (collision)
-                        resetInitialPosition(this.Player1, parcours - 2,parcours-1,colonne);
+                        resetInitialPosition(this.partie.player1.pions, parcours - 2,parcours-1,colonne);
                     else if (sauvCollision)
                         break;
                 }
