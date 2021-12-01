@@ -20,20 +20,34 @@ public class SelectPion : MonoBehaviour
 
     void OnMouseDown()
     {
-        for (int i = 0; i < 5; i++)
+        if(this.plateau.tourJoueur == this.GetComponent<InitPion>().joueur)
         {
-            this.plateau.Player1[i].GetComponent<SelectPion>().selected = false;
-            this.plateau.Player2[i].GetComponent<SelectPion>().selected = false;
+            if (this.plateau.tourJoueur == 1)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    this.plateau.Player1[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.Player1[i].GetComponent<SelectPion>().UnShowMove();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    this.plateau.Player2[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.Player2[i].GetComponent<SelectPion>().UnShowMove();
+                }
+            }
+            selected = true;
+            plateau.SelectedPion = GameObject.FindWithTag(this.tag);
+            plateau.EnableButton();
+            ShowMove();
         }
-        selected = true;
-        plateau.SelectedPion = GameObject.FindWithTag(this.tag);
-        plateau.EnableButton();
-        // afficher le bouton
     }
 
     void Update()
     {
-        if ((selected == true) && (shown == false)) { ShowMove(); }
+        if ((selected == true) && (shown == false)) {  }
         else if ((selected == false) && (shown == true)) { UnShowMove(); }
     }
 

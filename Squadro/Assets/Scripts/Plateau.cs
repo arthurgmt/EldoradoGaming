@@ -15,12 +15,13 @@ public class Plateau : MonoBehaviour
 
     public GameObject[] Player1 = new GameObject[5];
     public GameObject[] Player2 = new GameObject[5];
-    private Dictionary<int, GameObject[]> Dictionary = new Dictionary<int, GameObject[]>();
     private bool[,] plateau = new bool[7, 7];
     private float initialValue = 21.4f;
 
     private int[] arrayOfNbCasesDepart = new int[]{1,3,2,3,1};
     private int[] arrayOfNbCasesRotate = new int[]{3,1,2,1,3};
+
+    public int tourJoueur;// désigne le tour.
 
 
     // This script will simply instantiate the Prefab when the game starts.
@@ -66,8 +67,7 @@ public class Plateau : MonoBehaviour
             plateau[i, 0] = true;
             plateau[6, i] = true;
         }
-        Dictionary.Add(1, this.Player1);
-        Dictionary.Add(2, this.Player2);
+        this.tourJoueur = 1;
     }
 
     public void DeplacerPion() // A compléter.
@@ -162,11 +162,11 @@ public class Plateau : MonoBehaviour
                 this.RotatePion();
             else {
                 this.SelectedPion.SetActive(false);
-                this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
             } // le pion a fait un tour.
 		}
-
-		SelectedPion = null;
+        this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+        SelectedPion = null;
+        this.tourJoueur = this.tourJoueur == 1 ? 2 : 1;
         DisableButton();//désactiver le bouton.
 
     }
