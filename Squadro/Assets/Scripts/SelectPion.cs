@@ -54,7 +54,6 @@ public class SelectPion : MonoBehaviour
         InitPion pion = this.plateau.SelectedPion.GetComponent<InitPion>();
         float t = this.transform.rotation.y;
         string tag_p = this.tag + "alpha";
-        Debug.Log(pion.NbCase);
         int deplacement = pion.MovedCase + pion.NbCase <= 6 ? pion.NbCase : 6 - pion.MovedCase; 
         // check the rotation
         if (pion.joueur == 1 && !pion.rotated)

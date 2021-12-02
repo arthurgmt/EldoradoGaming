@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player
 {
     public GameObject[] pions = new GameObject[5];
-    private int nbPiecesAllerRetour;
+    private int nbPiecesAllerRetour; 
     public Player(GameObject[] pions)
     {
         this.nbPiecesAllerRetour = 0;
@@ -19,6 +19,11 @@ public class Player
 
     public bool incrementerNbPiecesAndTest()
     {
-        return this.nbPiecesAllerRetour++ == 4;
+        return ++this.nbPiecesAllerRetour == 4;
+    }
+
+    public int getNbPieces()
+    {
+        return this.nbPiecesAllerRetour;
     }
 }
