@@ -20,7 +20,7 @@ public class Plateau : MonoBehaviour
     private int[] arrayOfNbCasesDepart = new int[]{1,3,2,3,1};
     private int[] arrayOfNbCasesRotate = new int[]{3,1,2,1,3};
 
-
+     
     // This script will simply instantiate the Prefab when the game starts.
     void Start()
     {
@@ -151,11 +151,16 @@ public class Plateau : MonoBehaviour
         this.plateau[ligne, colonne] = false;
         if(pion.MovedCase == 6)
 		{
-            if (!pion.rotated)
+            if (!pion.rotated){
+                
                 this.RotatePion();
+            }
             else {
-                this.SelectedPion.SetActive(false);
+                pion.DisparitionPion();
+                
+                //this.SelectedPion.SetActive(false);
                 this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+                
             } // le pion a fait un tour.
 		}
 
@@ -170,16 +175,16 @@ public class Plateau : MonoBehaviour
         if (pion.joueur == 1)//rotation joueur 1
         {
             float pos = pion.transform.position.z;
-            pion.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             pion.transform.position = new Vector3(-24f, 3f, pos-1f);
+            pion.RotateMotionP1();
             pion.NbCase = this.arrayOfNbCasesRotate[pion.ligne - 1];
             pion.absoluteColonne = 6;
         }
         else // rotation joueur 2
         {
             float pos = pion.transform.position.x;
-            pion.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             pion.transform.position = new Vector3(pos+1f, 3f, -17f);
+            pion.RotateMotionP2();
             pion.NbCase = this.arrayOfNbCasesRotate[pion.colonne - 1];
             pion.absoluteLigne = 0;
         }
@@ -209,5 +214,7 @@ public class Plateau : MonoBehaviour
         pion.ligne = pion.absoluteLigne;
         pion.colonne = pion.absoluteColonne;
     }
+      
+    
 
 }

@@ -11,7 +11,30 @@ public class InitPion : MonoBehaviour
     public bool rotated = false;
     public Vector3 absolutePosition;
     public int absoluteLigne, absoluteColonne;
+   //
+    public void RotateMotionP1()
+    {       if (MovedCase == 6 && rotated == false){ 
+            this.GetComponent<Animator>().SetBool("action",true);
+            this.GetComponent<Animator>().Play("rotation_animation_p1");}
+         
+    }
 
+    public void RotateMotionP2()
+
+    {   if (MovedCase == 6 && rotated == false)  {  
+            this.GetComponent<Animator>().SetBool("action",true);
+            this.GetComponent<Animator>().Play("rotation_animation_p2");}
+         
+    }
+      public void DisparitionPion()
+      
+    {      if (MovedCase == 6 && rotated == true) {
+            this.GetComponent<Animator>().SetBool("action",true);
+            this.GetComponent<Animator>().Play("disparition");}
+         
+    }
+    
+    
     // Start is called before the first frame update
     void Start()
     {
