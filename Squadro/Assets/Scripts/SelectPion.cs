@@ -7,7 +7,6 @@ public class SelectPion : MonoBehaviour
     public Material m_base;
     public Material m_selection;
     public bool selected = false;
-    public bool shown = false;
     public GameObject Pionwithlowalpha;
     public Plateau plateau;
 
@@ -20,58 +19,71 @@ public class SelectPion : MonoBehaviour
 
     void OnMouseDown()
     {
-        for (int i = 1; i <= 10; i++)
+        if(this.plateau.tourJoueur == this.GetComponent<InitPion>().joueur)
         {
-            string p = "Pion" + i.ToString();
-            GameObject.FindWithTag(p).GetComponent<SelectPion>().selected = false;
+            if (this.plateau.tourJoueur == 1)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    this.plateau.partie.player1.pions[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.partie.player1.pions[i].GetComponent<SelectPion>().UnShowMove();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    this.plateau.partie.player2.pions[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.partie.player2.pions[i].GetComponent<SelectPion>().UnShowMove();
+                }
+            }
+            selected = true;
+            plateau.SelectedPion = GameObject.FindWithTag(this.tag);
+            plateau.EnableButton();
+            ShowMove();
         }
-        selected = true;
-        GameObject.FindWithTag("GameController").GetComponent<Plateau>().SelectedPion = GameObject.FindWithTag(this.tag);
-        plateau.EnableButton();
-        // afficher le bouton
     }
 
     void Update()
     {
-        if ((selected == true) && (shown == false)) { ShowMove(); }
-        else if ((selected == false) && (shown == true)) { UnShowMove(); }
     }
 
     void ShowMove()
     {
-        shown = true;
         this.GetComponent<Renderer>().material = m_selection;
-        int n = GameObject.FindWithTag(this.tag).GetComponent<InitPion>().NbCase;
+        InitPion pion = this.plateau.SelectedPion.GetComponent<InitPion>();
         float t = this.transform.rotation.y;
         string tag_p = this.tag + "alpha";
-
+        int deplacement = pion.MovedCase + pion.NbCase <= 6 ? pion.NbCase : 6 - pion.MovedCase; 
         // check the rotation
-        if ( t == 0)
+        if (pion.joueur == 1 && !pion.rotated)
         {
-            float x = this.transform.position.x;
-            float z = this.transform.position.z - (n * 7);
-            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
-        }else if (t > 0 && t < 90)
-        {
-            float x = this.transform.position.x - (n * 7);
+            float x = this.transform.position.x - (deplacement * 7);
             float z = this.transform.position.z;
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
-        }else if (t < 0 && t > -90)
+        }   
+        else if (pion.joueur == 1 && pion.rotated)
         {
-            float x = this.transform.position.x + (n * 7);
+            float x = this.transform.position.x + (deplacement * 7);
             float z = this.transform.position.z;
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, -90f, 0f)).tag = tag_p;
-        }else
+        }
+        else if(pion.joueur == 2 && !pion.rotated)
         {
             float x = this.transform.position.x;
-            float z = this.transform.position.z + (n * 7);
+            float z = this.transform.position.z - (deplacement * 7);
+            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
+        }
+        else
+        {
+            float x = this.transform.position.x;
+            float z = this.transform.position.z + (deplacement * 7);
             Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 180f, 0f)).tag = tag_p;
         }
     }
 
-    void UnShowMove()
+    public void UnShowMove()
     {
-        shown = false;
         string tag_p = this.tag + "alpha";
         this.GetComponent<Renderer>().material = m_base;
         Destroy(GameObject.FindWithTag(tag_p));
