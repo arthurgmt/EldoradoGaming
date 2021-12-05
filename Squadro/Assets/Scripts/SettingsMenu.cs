@@ -6,23 +6,22 @@ using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer;
 
     public Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
 
+    public AudioMixer audioMixer;
+    
     public Slider musicSlider;
-    public Slider soundSlider;
     public void Start()
     {
         audioMixer.GetFloat("Music", out float musicValueForSlider);
         musicSlider.value = musicValueForSlider;
 
-        audioMixer.GetFloat("Sound", out float soundValueForSlider);
-        soundSlider.value = soundValueForSlider;
-
+        // On récupère toutes les résolutions puis on fait un distinct pour ne pas les avoirs en doubles 
         resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
+       
         resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
@@ -50,19 +49,16 @@ public class SettingsMenu : MonoBehaviour
         audioMixer.SetFloat("Music", volume);
     }
 
-    public void SetSoundVolume(float volume)
-    {
-        audioMixer.SetFloat("Sound", volume);
-    }
-
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
     }
 
-    public void SetResolution(int resolutionIndex)
+    public void SetResolution(int resolIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
+        Resolution resolution = resolutions[resolIndex];
+
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
     }
 }

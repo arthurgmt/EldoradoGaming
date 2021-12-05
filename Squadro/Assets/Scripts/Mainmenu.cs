@@ -9,10 +9,12 @@ public class Mainmenu : MonoBehaviour
     public Button quit;
     public Button createGame;
     public Button joinGame;
+
+    public GameObject settingsWindow;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,7 +35,12 @@ public class Mainmenu : MonoBehaviour
 
     public void Settings()
     {
+        settingsWindow.gameObject.SetActive(true);
+    }
 
+    public void CloseSettings()
+    {
+        settingsWindow.gameObject.SetActive(false);
     }
     public void Quit()
     {

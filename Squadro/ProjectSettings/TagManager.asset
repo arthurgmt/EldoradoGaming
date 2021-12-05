@@ -27,6 +27,7 @@ TagManager:
   - Pion10alpha
   - Plateau
   - ConfirmButton
+  - SettingWindow
   layers:
   - Default
   - TransparentFX
