@@ -18,7 +18,7 @@ public class Plateau:MonoBehaviour
     private int[] arrayOfNbCasesDepart = new int[] { 1, 3, 2, 3, 1 };
     private int[] arrayOfNbCasesRotate = new int[] { 3, 1, 2, 1, 3 };
 
-    public Partie partie;
+    private Partie partie;
 
     private void Start()
     {
@@ -64,7 +64,10 @@ public class Plateau:MonoBehaviour
             plateau[i, 0] = true;
             plateau[6, i] = true;
         }
-        this.partie = this.GetComponent<Partie>();
+        this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
+        this.partie.setPlayer1(new Player(pionsP1));
+        this.partie.setPlayer2(new Player(pionsP2));
+        this.partie.tourJoueur = 1;
     }
 
     public void DeplacerPion() // A compléter.
@@ -224,8 +227,6 @@ public class Plateau:MonoBehaviour
         pion.colonne = pion.absoluteColonne;
     }
       
-    
-
     private void incrementNbPionsAllerRetourPlayer(int joueur)
     {
         bool fin;
@@ -238,5 +239,10 @@ public class Plateau:MonoBehaviour
             /*Faire un affichage UI*/
             Debug.Log("Player N=" + joueur + " has win");
         }
+    }
+
+    public Partie getPartie()
+    {
+        return this.partie;
     }
 }

@@ -14,27 +14,27 @@ public class SelectPion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        plateau = GameObject.FindWithTag("GameController").GetComponent<Plateau>();
+        plateau = GameObject.FindWithTag("Plateau").GetComponent<Plateau>();
     }
 
     void OnMouseDown()
     {
-        if(this.plateau.partie.tourJoueur == this.GetComponent<InitPion>().joueur)
+        if(this.plateau.getPartie().tourJoueur == this.GetComponent<InitPion>().joueur)
         {
-            if (this.plateau.partie.tourJoueur == 1)
+            if (this.plateau.getPartie().tourJoueur == 1)
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    this.plateau.partie.player1.pions[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.partie.player1.pions[i].GetComponent<SelectPion>().UnShowMove();
+                    this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().UnShowMove();
                 }
             }
             else
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    this.plateau.partie.player2.pions[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.partie.player2.pions[i].GetComponent<SelectPion>().UnShowMove();
+                    this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().selected = false;
+                    this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().UnShowMove();
                 }
             }
             selected = true;

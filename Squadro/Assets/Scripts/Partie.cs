@@ -9,22 +9,25 @@ public class Partie:MonoBehaviour
     public Player player2;
     private string idPartie;
     public int tourJoueur;// désigne le tour.
-    public Partie(Plateau plateau, Player player1, Player player2)
-    {
-        this.plateau = plateau;
-        this.player1 = player1;
-        this.player2 = player2;
-        this.tourJoueur = 1;
-    }
 
     private void Start()
     {
-        this.plateau = GetComponent<Plateau>();
+        
     }
 
     private void Update()
     {
         
+    }
+
+    public void setPlayer1(Player p1)
+    {
+        this.player1 = p1;
+    }
+
+    public void setPlayer2(Player p2)
+    {
+        this.player2 = p2;
     }
 
 }
