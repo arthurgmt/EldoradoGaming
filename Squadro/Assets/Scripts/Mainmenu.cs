@@ -44,7 +44,7 @@ public class Mainmenu : MonoBehaviour
     }
     public void CreateGame()
     {
-        SceneManager.LoadScene("Tour_Management");
+        SceneManager.LoadScene("Partie");
     }
     public void JoinGame()
     {
