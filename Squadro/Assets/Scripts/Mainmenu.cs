@@ -7,8 +7,6 @@ public class Mainmenu : MonoBehaviour
     public Button play;
     public Button settings;
     public Button quit;
-    public Button createGame;
-    public Button joinGame;
 
     public GameObject settingsWindow;
     public GameObject playingWindow;
