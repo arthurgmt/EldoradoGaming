@@ -1,7 +1,7 @@
-﻿ using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Mainmenu : MonoBehaviour
 {
     public Button play;
@@ -13,17 +13,6 @@ public class Mainmenu : MonoBehaviour
     public GameObject settingsWindow;
     public GameObject playingWindow;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Play()
     {
@@ -57,7 +46,7 @@ public class Mainmenu : MonoBehaviour
     }
     public void CreateGame()
     {
-
+        SceneManager.LoadScene("Tour_Management");
     }
     public void JoinGame()
     {
