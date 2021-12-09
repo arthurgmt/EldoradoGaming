@@ -67,10 +67,10 @@ public class SettingsMenu : MonoBehaviour
 
     }
 
-    public void SetRotation(float speed)
+    public void SetRotation(float speedrot)
     {
-        cam3d.GetComponent<main_cam>().s = speed;
-        cam2d.GetComponent<main_cam>().s = speed;
+        cam3d.GetComponent<main_cam>().speed = speedrot;
+        cam2d.GetComponent<main_cam>().speed = speedrot;
     }
 
 }

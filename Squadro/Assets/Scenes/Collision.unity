@@ -484,23 +484,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1785445354e08d38e031c0f921a72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  cam: {fileID: 0}
   myPrefab: {fileID: 7090172883992435471, guid: 56e172a88db0e724caf4be0cdbf749c5,
     type: 3}
   SelectedPion: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
   confirmButton: {fileID: 1946503650}
-  Player1:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Player2:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  partie: {fileID: 0}
 --- !u!4 &682109286
 Transform:
   m_ObjectHideFlags: 0
