@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class Plateau:MonoBehaviour
 {
@@ -30,34 +31,40 @@ public class Plateau:MonoBehaviour
         Vector3 v1;
         GameObject[] pionsP1 = new GameObject[5];
         GameObject[] pionsP2 = new GameObject[5];
-        for (int i = 0; i < 5; i++)
+        if (PhotonNetwork.IsMasterClient)
         {
-            v1 = new Vector3(24, 3, initialValue - i * 7);
-            pionsP1[4 - i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
-            pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
-            pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
-            pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
-            pionsP1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
-            pionsP1[4 - i].GetComponent<InitPion>().colonne = 0;
-            pionsP1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-            pionsP1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
-            pionsP1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                v1 = new Vector3(24, 3, initialValue - i * 7);
+                pionsP1[4 - i] = PhotonNetwork.Instantiate(myPrefab.name, v1, Quaternion.Euler(0f, 90f, 0f));
+                pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
+                pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
+                pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
+                pionsP1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
+                pionsP1[4 - i].GetComponent<InitPion>().colonne = 0;
+                pionsP1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+                pionsP1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
+                pionsP1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
+            }
         }
-        initialValue = 13.4f;
-        for (int i = 0; i < 5; i++)
+        else
         {
-            v1 = new Vector3(initialValue - i * 7, 3, 31);
-            pionsP2[i] = Instantiate(myPrefab, v1, Quaternion.identity);
-            pionsP2[i].tag = "Pion" + (i + 6).ToString();
-            pionsP2[i].GetComponent<InitPion>().joueur = 2;
-            pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
-            pionsP2[i].GetComponent<InitPion>().ligne = 6;
-            pionsP2[i].GetComponent<InitPion>().colonne = i + 1;
-            pionsP2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-            pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
-            pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
-        }
+            initialValue = 13.4f;
+            for (int i = 0; i < 5; i++)
+            {
+                v1 = new Vector3(initialValue - i * 7, 3, 31);
+                pionsP2[i] = PhotonNetwork.Instantiate(myPrefab.name, v1, Quaternion.identity);
+                pionsP2[i].tag = "Pion" + (i + 6).ToString();
+                pionsP2[i].GetComponent<InitPion>().joueur = 2;
+                pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
+                pionsP2[i].GetComponent<InitPion>().ligne = 6;
+                pionsP2[i].GetComponent<InitPion>().colonne = i + 1;
+                pionsP2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+                pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
+                pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
+            }
 
+        }
         for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
         {
             plateau[i, 0] = true;
@@ -81,7 +88,7 @@ public class Plateau:MonoBehaviour
         bool collision = false;
         bool sauvCollision = false;
         int parcours, deplacement;
-        if (joueur == 1)
+        if (PhotonNetwork.IsMasterClient)
         {
             //il faut après verifier les rotations.
             if (!pion.rotated)
