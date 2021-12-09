@@ -11,6 +11,8 @@ public class Mainmenu : MonoBehaviour
     public Button joinGame;
 
     public GameObject settingsWindow;
+    public GameObject playingWindow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +30,7 @@ public class Mainmenu : MonoBehaviour
         play.gameObject.SetActive(false);
         settings.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
-        createGame.gameObject.SetActive(true);
-        joinGame.gameObject.SetActive(true);
+        playingWindow.gameObject.SetActive(true);
 
     }
 
@@ -41,6 +42,14 @@ public class Mainmenu : MonoBehaviour
     public void CloseSettings()
     {
         settingsWindow.gameObject.SetActive(false);
+    }
+
+    public void ClosePlaying()
+    {
+        playingWindow.gameObject.SetActive(false);
+        play.gameObject.SetActive(true);
+        settings.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
     }
     public void Quit()
     {

@@ -150,8 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1785445354e08d38e031c0f921a72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  cam: {fileID: 0}
   myPrefab: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
+  SelectedPion: {fileID: 0}
+  confirmButton: {fileID: 0}
+  tourJoueur: 0
 --- !u!4 &615805570
 Transform:
   m_ObjectHideFlags: 0

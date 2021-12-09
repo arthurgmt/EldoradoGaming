@@ -14,6 +14,11 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
     
     public Slider musicSlider;
+
+    public GameObject cam2d;
+
+    public GameObject cam3d;
+
     public void Start()
     {
         audioMixer.GetFloat("Music", out float musicValueForSlider);
@@ -61,4 +66,11 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
     }
+
+    public void SetRotation(float speed)
+    {
+        cam3d.GetComponent<main_cam>().s = speed;
+        cam2d.GetComponent<main_cam>().s = speed;
+    }
+
 }
