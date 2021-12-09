@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class Plateau : MonoBehaviour
+public class Plateau:MonoBehaviour
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
     public Camera mainCam; // 2d 
@@ -13,18 +13,14 @@ public class Plateau : MonoBehaviour
     public GameObject SelectedPion;
     public Button confirmButton;
 
-    //public GameObject[] Player1 = new GameObject[5];
-    //public GameObject[] Player2 = new GameObject[5];
     private bool[,] plateau = new bool[7, 7];
 
     private int[] arrayOfNbCasesDepart = new int[] { 1, 3, 2, 3, 1 };
     private int[] arrayOfNbCasesRotate = new int[] { 3, 1, 2, 1, 3 };
 
-    public int tourJoueur;// désigne le tour.
     public Partie partie;
 
-    // This script will simply instantiate the Prefab when the game starts.
-    void Start()
+    private void Start()
     {
         float initialValue = 21.4f;
         // Camera Setup
@@ -68,8 +64,7 @@ public class Plateau : MonoBehaviour
             plateau[i, 0] = true;
             plateau[6, i] = true;
         }
-        this.tourJoueur = 1;
-        this.partie = new Partie(this, new Player(pionsP1), new Player(pionsP2));
+        this.partie = this.GetComponent<Partie>();
     }
 
     public void DeplacerPion() // A compléter.
@@ -178,7 +173,7 @@ public class Plateau : MonoBehaviour
         }
         this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
         SelectedPion = null;
-        this.tourJoueur = this.tourJoueur == 1 ? 2 : 1;
+        this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
         DisableButton();//désactiver le bouton.
 
     }

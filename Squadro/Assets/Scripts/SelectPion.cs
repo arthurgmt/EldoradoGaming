@@ -19,9 +19,9 @@ public class SelectPion : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(this.plateau.tourJoueur == this.GetComponent<InitPion>().joueur)
+        if(this.plateau.partie.tourJoueur == this.GetComponent<InitPion>().joueur)
         {
-            if (this.plateau.tourJoueur == 1)
+            if (this.plateau.partie.tourJoueur == 1)
             {
                 for (int i = 0; i < 5; i++)
                 {
