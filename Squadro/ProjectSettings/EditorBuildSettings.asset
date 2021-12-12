@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Dev_arthur_scene.unity
     guid: 03d0f081c5e38f54c87c86fc7268076a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Loading.unity
     guid: f12c3052e4242ba4491e8738ca98ecd8
   - enabled: 1

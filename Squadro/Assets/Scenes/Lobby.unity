@@ -911,7 +911,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 611144614}
+      - m_Target: {fileID: 611144616}
         m_MethodName: JoinRoom
         m_Mode: 1
         m_Arguments:
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 611144614}
+      - m_Target: {fileID: 611144616}
         m_MethodName: CreateRoom
         m_Mode: 1
         m_Arguments:
