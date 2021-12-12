@@ -22,6 +22,7 @@ public class Plateau:MonoBehaviour
 
     private void Start()
     {
+        
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -31,8 +32,9 @@ public class Plateau:MonoBehaviour
         Vector3 v1;
         GameObject[] pionsP1 = new GameObject[5];
         GameObject[] pionsP2 = new GameObject[5];
+        Debug.Log("HELLLO 1");
         if (PhotonNetwork.IsMasterClient)
-        {
+        {   
             for (int i = 0; i < 5; i++)
             {
                 v1 = new Vector3(24, 3, initialValue - i * 7);
@@ -49,6 +51,7 @@ public class Plateau:MonoBehaviour
         }
         else
         {
+            Debug.Log("HELLLO 2");
             initialValue = 13.4f;
             for (int i = 0; i < 5; i++)
             {
@@ -73,7 +76,7 @@ public class Plateau:MonoBehaviour
         this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
         this.partie.setPlayer1(new Player(pionsP1));
         this.partie.setPlayer2(new Player(pionsP2));
-        this.partie.tourJoueur = 1;
+        this.partie.tourJoueur = 2;
     }
 
     public void DeplacerPion() // A compléter.
@@ -88,7 +91,7 @@ public class Plateau:MonoBehaviour
         bool collision = false;
         bool sauvCollision = false;
         int parcours, deplacement;
-        if (PhotonNetwork.IsMasterClient)
+        if (joueur == 1)
         {
             //il faut après verifier les rotations.
             if (!pion.rotated)
@@ -182,7 +185,7 @@ public class Plateau:MonoBehaviour
         }
         this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
         SelectedPion = null;
-        this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
+        //this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
         DisableButton();//désactiver le bouton.
 
     }
