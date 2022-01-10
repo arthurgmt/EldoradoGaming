@@ -78,6 +78,8 @@ public class Plateau : MonoBehaviour
         this.partie.setPlayer2(player2);
         this.partie.tourJoueur = 1;
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+
+
             this.localPlayer = 1;
         else localPlayer = 2;
     }
