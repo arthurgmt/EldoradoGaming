@@ -20,6 +20,7 @@ public class Plateau : MonoBehaviour
     private Player activePlayer;
 
     private PhotonView photonView;
+    public int localPlayer;
 
     private void Awake()
     {
@@ -77,8 +78,11 @@ public class Plateau : MonoBehaviour
         this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
        
         this.partie.setPlayer1(new Player(pionsP1));
-       this.partie.setPlayer2(new Player(pionsP2));
+        this.partie.setPlayer2(new Player(pionsP2));
         this.partie.tourJoueur = 1;
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            this.localPlayer = 1;
+        else localPlayer = 2;
     }
 
     public void DeplacerPion() // A compléter.

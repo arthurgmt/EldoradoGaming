@@ -19,9 +19,7 @@ public class SelectPion : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log(this.GetComponent<InitPion>().joueur);
-        Debug.Log(this.plateau.getPartie().tourJoueur);
-        if (this.plateau.getPartie().tourJoueur == this.GetComponent<InitPion>().joueur)
+        if (this.plateau.getPartie().tourJoueur == this.GetComponent<InitPion>().joueur && this.plateau.getPartie().tourJoueur == this.plateau.localPlayer)
         {
             if (this.plateau.getPartie().tourJoueur == 1)
             {
