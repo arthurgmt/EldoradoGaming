@@ -5,7 +5,7 @@ using Photon.Pun;
 public class Plateau : MonoBehaviour
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
-    public Camera mainCam; // 2d 
+    public Camera mainCam; // 2d dkk
     public Camera cam; //3d
     public GameObject myPrefab;
     public GameObject SelectedPion;
@@ -28,6 +28,7 @@ public class Plateau : MonoBehaviour
 
     private void Start()
     {
+
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -36,14 +37,13 @@ public class Plateau : MonoBehaviour
         // Instantiate at position (0, 0, 0) and zero rotation.
         Vector3 v1;
         GameObject[] pionsP1 = new GameObject[5];
-        GameObject[] pionsP2 = new GameObject[5];
-        if (PhotonNetwork.IsMasterClient)
-        {   
-            activePlayer
+        GameObject[] pionsP2 = new GameObject[5]; 
+       
+           //activePlayer
             for (int i = 0; i < 5; i++)
             {
                 v1 = new Vector3(24, 3, initialValue - i * 7);
-                pionsP1[4 - i] = PhotonNetwork.Instantiate(myPrefab.name, v1, Quaternion.Euler(0f, 90f, 0f));
+                pionsP1[4 - i] =Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
                 pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
                 pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
                 pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
@@ -53,33 +53,31 @@ public class Plateau : MonoBehaviour
                 pionsP1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
                 pionsP1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
             }
-        }
-        else
-        {
+       
             initialValue = 13.4f;
-            for (int i = 0; i < 5; i++)
-            {
-                v1 = new Vector3(initialValue - i * 7, 3, 31);
-                pionsP2[i] = PhotonNetwork.Instantiate(myPrefab.name, v1, Quaternion.identity);
-                pionsP2[i].tag = "Pion" + (i + 6).ToString();
-                pionsP2[i].GetComponent<InitPion>().joueur = 2;
-                pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
-                pionsP2[i].GetComponent<InitPion>().ligne = 6;
-                pionsP2[i].GetComponent<InitPion>().colonne = i + 1;
-                pionsP2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-                pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
-                pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
-            }
-
+        for (int i = 0; i < 5; i++)
+        {
+            v1 = new Vector3(initialValue - i * 7, 3, 31);
+            pionsP2[i] = Instantiate(myPrefab, v1, Quaternion.identity);
+            pionsP2[i].tag = "Pion" + (i + 6).ToString();
+            pionsP2[i].GetComponent<InitPion>().joueur = 2;
+            pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
+            pionsP2[i].GetComponent<InitPion>().ligne = 6;
+            pionsP2[i].GetComponent<InitPion>().colonne = i + 1;
+            pionsP2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
+            pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
         }
-        for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
+
+            for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
         {
             plateau[i, 0] = true;
             plateau[6, i] = true;
         }
         this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
+       
         this.partie.setPlayer1(new Player(pionsP1));
-        this.partie.setPlayer2(new Player(pionsP2));
+       this.partie.setPlayer2(new Player(pionsP2));
         this.partie.tourJoueur = 1;
     }
 
@@ -172,18 +170,20 @@ public class Plateau : MonoBehaviour
         SelectedPion.transform.Translate(0, 0, -deplacement * 7);
         this.plateau[pion.ligne, pion.colonne] = true;
         this.plateau[ligne, colonne] = false;
-        if(pion.MovedCase == 6)
-		{
-            if (!pion.rotated){
-                
+        if (pion.MovedCase == 6)
+        {
+            if (!pion.rotated)
+            {
+
                 this.RotatePion();
             }
-            else {
-                pion.DisparitionPion();         
+            else
+            {
+                pion.DisparitionPion();
                 //this.SelectedPion.SetActive(false);
                 this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
                 this.incrementNbPionsAllerRetourPlayer(pion.joueur);
-                
+
             } // le pion a fait un tour.
         }
         this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
@@ -198,7 +198,7 @@ public class Plateau : MonoBehaviour
         if (pion.joueur == 1)//rotation joueur 1
         {
             float pos = pion.transform.position.z;
-            pion.transform.position = new Vector3(-24f, 3f, pos-1f);
+            pion.transform.position = new Vector3(-24f, 3f, pos - 1f);
             pion.RotateMotionP1();
             pion.NbCase = this.arrayOfNbCasesRotate[pion.ligne - 1];
             pion.absoluteColonne = 6;
@@ -206,7 +206,7 @@ public class Plateau : MonoBehaviour
         else // rotation joueur 2
         {
             float pos = pion.transform.position.x;
-            pion.transform.position = new Vector3(pos+1f, 3f, -17f);
+            pion.transform.position = new Vector3(pos + 1f, 3f, -17f);
             pion.RotateMotionP2();
             pion.NbCase = this.arrayOfNbCasesRotate[pion.colonne - 1];
             pion.absoluteLigne = 0;
@@ -237,12 +237,12 @@ public class Plateau : MonoBehaviour
         pion.ligne = pion.absoluteLigne;
         pion.colonne = pion.absoluteColonne;
     }
-      
+
     private void incrementNbPionsAllerRetourPlayer(int joueur)
     {
         bool fin;
         if (joueur == 1)
-            fin = this.partie.player1.incrementerNbPiecesAndTest();      
+            fin = this.partie.player1.incrementerNbPiecesAndTest();
         else
             fin = this.partie.player2.incrementerNbPiecesAndTest();
         if (fin)
