@@ -34,7 +34,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom()// do something when the game already exists.
     {
-        PhotonNetwork.CreateRoom(create.text);
+        PhotonNetwork.CreateRoom(create.text,new RoomOptions { MaxPlayers = MAX_PLAYERS });
     }
 
     public void JoinRoom() // if the room does not exist create one.
@@ -48,8 +48,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-            Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber);
-            PhotonNetwork.LoadLevel("NetPartie");
+        PhotonNetwork.LoadLevel("NetPartie");
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
