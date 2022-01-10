@@ -27,26 +27,9 @@ public class InitPion : MonoBehaviour
          
     }
       public void DisparitionPion()
-      
     {      if (MovedCase == 6 && rotated == true) {
             this.GetComponent<Animator>().SetBool("action",true);
             this.GetComponent<Animator>().Play("disparition");}
          
     }
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
-
-    //Gestion du nombre de case à parcourir 
-    void Update()// ne pas mettre ici de code SVP car ca recharge après chaque frame ce qui rend l'application lourde.
-    {
-        // cas0: si le pion arrive au bout du plateau le retourner
-        // cas1: ne pas dépasser du plateau
-        //cas2: si un pion adverse est sur la case d'arrivée du pion
-    }
-
 }

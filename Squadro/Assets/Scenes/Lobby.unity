@@ -778,7 +778,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 611144615}
-  - component: {fileID: 611144614}
   - component: {fileID: 611144616}
   m_Layer: 0
   m_Name: NetworkManager
@@ -787,20 +786,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &611144614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611144613}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256a4cec85dccab43a1600c810f76042, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  create: {fileID: 831227167}
-  join: {fileID: 275368322}
 --- !u!4 &611144615
 Transform:
   m_ObjectHideFlags: 0

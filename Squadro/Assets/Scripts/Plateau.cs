@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class Plateau:MonoBehaviour
+public class Plateau : MonoBehaviour
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
     public Camera mainCam; // 2d 
@@ -22,7 +20,7 @@ public class Plateau:MonoBehaviour
 
     private void Start()
     {
-        
+        Debug.LogError("helloo here");
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -32,7 +30,6 @@ public class Plateau:MonoBehaviour
         Vector3 v1;
         GameObject[] pionsP1 = new GameObject[5];
         GameObject[] pionsP2 = new GameObject[5];
-        Debug.Log("HELLLO 1");
         if (PhotonNetwork.IsMasterClient)
         {   
             for (int i = 0; i < 5; i++)
@@ -51,7 +48,6 @@ public class Plateau:MonoBehaviour
         }
         else
         {
-            Debug.Log("HELLLO 2");
             initialValue = 13.4f;
             for (int i = 0; i < 5; i++)
             {
@@ -187,7 +183,6 @@ public class Plateau:MonoBehaviour
         SelectedPion = null;
         //this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
         DisableButton();//désactiver le bouton.
-
     }
 
     private void RotatePion()

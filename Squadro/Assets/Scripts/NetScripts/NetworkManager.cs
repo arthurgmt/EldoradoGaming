@@ -22,14 +22,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    public override void OnConnectedToMaster()
+    public override void OnConnectedToMaster()// when connected to the server.
     {
         
-    }
-
-    public override void OnJoinedLobby()
-    {
-        SceneManager.LoadScene("Lobby");
     }
 
     public void CreateRoom()// do something when the game already exists.
@@ -39,7 +34,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom() // if the room does not exist create one.
     {
-
         if(join.text.Length != 0)
             PhotonNetwork.JoinRoom(join.text);
         else
@@ -48,6 +42,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        Debug.LogError(PhotonNetwork.CurrentRoom.MaxPlayers);
         PhotonNetwork.LoadLevel("NetPartie");
     }
 
@@ -71,6 +66,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 uiManager.RestrictTeamChoice((TeamColor)occupiedTeam);
             }*/
         }
+    }
+
+    internal bool IsRoomFull()
+    {
+        return PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers;
     }
 
 }

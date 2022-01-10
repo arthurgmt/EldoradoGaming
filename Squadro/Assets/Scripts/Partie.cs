@@ -7,7 +7,6 @@ public class Partie:MonoBehaviour
     public Plateau plateau;
     public Player player1;
     public Player player2;
-    private string idPartie;
     public int tourJoueur = 2;// désigne le tour.
 
     private void Start()
