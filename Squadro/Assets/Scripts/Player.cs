@@ -26,4 +26,6 @@ public class Player
     {
         return this.nbPiecesAllerRetour;
     }
+
+    //public abstract void deplacerPion();
 }
