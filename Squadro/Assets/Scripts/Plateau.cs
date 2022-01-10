@@ -17,10 +17,17 @@ public class Plateau : MonoBehaviour
     private int[] arrayOfNbCasesRotate = new int[] { 3, 1, 2, 1, 3 };
 
     private Partie partie;
+    private Player activePlayer;
+
+    private PhotonView photonView;
+
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
 
     private void Start()
     {
-        Debug.LogError("helloo here");
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -32,6 +39,7 @@ public class Plateau : MonoBehaviour
         GameObject[] pionsP2 = new GameObject[5];
         if (PhotonNetwork.IsMasterClient)
         {   
+            activePlayer
             for (int i = 0; i < 5; i++)
             {
                 v1 = new Vector3(24, 3, initialValue - i * 7);
@@ -72,7 +80,7 @@ public class Plateau : MonoBehaviour
         this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
         this.partie.setPlayer1(new Player(pionsP1));
         this.partie.setPlayer2(new Player(pionsP2));
-        this.partie.tourJoueur = 2;
+        this.partie.tourJoueur = 1;
     }
 
     public void DeplacerPion() // A compléter.
@@ -171,8 +179,7 @@ public class Plateau : MonoBehaviour
                 this.RotatePion();
             }
             else {
-                pion.DisparitionPion();
-                
+                pion.DisparitionPion();         
                 //this.SelectedPion.SetActive(false);
                 this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
                 this.incrementNbPionsAllerRetourPlayer(pion.joueur);
@@ -181,8 +188,8 @@ public class Plateau : MonoBehaviour
         }
         this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
         SelectedPion = null;
-        //this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
         DisableButton();//désactiver le bouton.
+        endTurn();
     }
 
     private void RotatePion()
@@ -243,6 +250,18 @@ public class Plateau : MonoBehaviour
             /*Faire un affichage UI*/
             Debug.Log("Player N=" + joueur + " has win");
         }
+    }
+
+    private void endTurn()
+    {
+        this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
+        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.AllBuffered, new object[] { this.partie.tourJoueur });
+    }
+
+    [PunRPC]
+    private void RPC_EndTurn(int tourJoueur)
+    {
+        this.partie.tourJoueur = tourJoueur;
     }
 
     public Partie getPartie()
