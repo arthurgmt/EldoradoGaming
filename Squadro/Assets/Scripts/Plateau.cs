@@ -76,9 +76,11 @@ public class Plateau : MonoBehaviour
             plateau[6, i] = true;
         }
         this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
-       
-        this.partie.setPlayer1(new Player(pionsP1));
-        this.partie.setPlayer2(new Player(pionsP2));
+        Debug.LogError(GameObject.FindWithTag("GameController"));
+        Player player1 = new Player(pionsP1);
+        this.partie.setPlayer1(player1);
+        Player player2 = new Player(pionsP2);
+        this.partie.setPlayer2(player2);
         this.partie.tourJoueur = 1;
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
             this.localPlayer = 1;
