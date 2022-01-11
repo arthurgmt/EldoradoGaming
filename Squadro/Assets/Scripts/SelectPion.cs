@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +10,7 @@ public class SelectPion : MonoBehaviour
     public bool selected = false;
     public GameObject Pionwithlowalpha;
     public Plateau plateau;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +33,7 @@ public class SelectPion : MonoBehaviour
             {
                 for (int i = 0; i < 5; i++)
                 {
+                   
                     this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().selected = false;
                     this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().UnShowMove();
                 }

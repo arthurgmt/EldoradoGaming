@@ -5,7 +5,7 @@ using Photon.Pun;
 public class Plateau : MonoBehaviour
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
-    public Camera mainCam; // 2d 
+    public Camera mainCam; // 2d dkk
     public Camera cam; //3d
     public GameObject myPrefab;
     public GameObject SelectedPion;
@@ -17,8 +17,9 @@ public class Plateau : MonoBehaviour
     private int[] arrayOfNbCasesRotate = new int[] { 3, 1, 2, 1, 3 };
 
     private Partie partie;
-    private PhotonView photonView;
+    private Player activePlayer;
 
+    private PhotonView photonView;
     public int localPlayer;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class Plateau : MonoBehaviour
 
     private void Start()
     {
+
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -35,6 +37,7 @@ public class Plateau : MonoBehaviour
 
         // Instantiate at position (0, 0, 0) and zero rotation.
         Vector3 v1;
+
         InitPion[] pionsP1 = new InitPion[5];
         InitPion[] pionsP2 = new InitPion[5];
 
@@ -53,6 +56,7 @@ public class Plateau : MonoBehaviour
         }
 
         initialValue = 13.4f;
+
         for (int i = 0; i < 5; i++)
         {
             v1 = new Vector3(initialValue - i * 7, 3, 31);
@@ -282,4 +286,5 @@ public class Plateau : MonoBehaviour
             return this.partie.player1.getInitPionWithInfo(ligne, colonne);
         return this.partie.player2.getInitPionWithInfo(ligne, colonne);
     }
+
 }
