@@ -37,27 +37,7 @@ public class Plateau : MonoBehaviour
 
         // Instantiate at position (0, 0, 0) and zero rotation.
         Vector3 v1;
-<<<<<<< HEAD
-        GameObject[] pionsP1 = new GameObject[5];
-        GameObject[] pionsP2 = new GameObject[5]; 
-       
-           //activePlayer
-            for (int i = 0; i < 5; i++)
-            {
-                v1 = new Vector3(24, 3, initialValue - i * 7);
-                pionsP1[4 - i] =Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
-                pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
-                pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
-                pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
-                pionsP1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
-                pionsP1[4 - i].GetComponent<InitPion>().colonne = 0;
-                pionsP1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-                pionsP1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
-                pionsP1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
-            }
-       
-            initialValue = 13.4f;
-=======
+
         InitPion[] pionsP1 = new InitPion[5];
         InitPion[] pionsP2 = new InitPion[5];
 
@@ -76,7 +56,7 @@ public class Plateau : MonoBehaviour
         }
 
         initialValue = 13.4f;
->>>>>>> 43a0a884509ea1a5b80718644aa734e60c97d081
+
         for (int i = 0; i < 5; i++)
         {
             v1 = new Vector3(initialValue - i * 7, 3, 31);
@@ -200,7 +180,7 @@ public class Plateau : MonoBehaviour
             if (!pion.rotated)
             {
 
-                this.RotatePion();
+                this.RotatePion(SelectedPion.GetComponent<InitPion>());
             }
             else
             {
@@ -224,7 +204,7 @@ public class Plateau : MonoBehaviour
         int joueur = pion.joueur;
         int ligne = pion.ligne;
         int colonne = pion.colonne;
-        SelectedPion.GetComponent<SelectPion>().selected = false;
+        //SelectedPion.GetComponent<SelectPion>().selected = false;
         bool collision = false;
         bool sauvCollision = false;
         int parcours, deplacement;
@@ -302,7 +282,7 @@ public class Plateau : MonoBehaviour
             }
         }
         pion.MovedCase += deplacement;
-        SelectedPion.transform.Translate(0, 0, -deplacement * 7);
+        pion.transform.Translate(0, 0, -deplacement * 7);
         this.plateau[pion.ligne, pion.colonne] = true;
         this.plateau[ligne, colonne] = false;
         if (pion.MovedCase == 6)
@@ -310,25 +290,24 @@ public class Plateau : MonoBehaviour
             if (!pion.rotated)
             {
 
-                this.RotatePion();
+                this.RotatePion(pion);
             }
             else
             {
                 pion.DisparitionPion();
                 //this.SelectedPion.SetActive(false);
-                this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+                //this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
                 this.incrementNbPionsAllerRetourPlayer(pion.joueur);
 
             } // le pion a fait un tour.
         }
-        this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+        //this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
         SelectedPion = null;
-        DisableButton();//désactiver le bouton.
+       // DisableButton();//désactiver le bouton.
     }
 
-    private void RotatePion()
+    private void RotatePion(InitPion pion)
     {
-        InitPion pion = SelectedPion.GetComponent<InitPion>();
         if (pion.joueur == 1)//rotation joueur 1
         {
             float pos = pion.transform.position.z;
