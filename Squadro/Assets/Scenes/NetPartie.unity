@@ -379,6 +379,7 @@ MonoBehaviour:
   SelectedPion: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
   confirmButton: {fileID: 1946503650}
+  localPlayer: 0
 --- !u!114 &434766923
 MonoBehaviour:
   m_ObjectHideFlags: 0
