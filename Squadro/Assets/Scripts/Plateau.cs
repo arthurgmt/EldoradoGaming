@@ -87,6 +87,23 @@ public class Plateau : MonoBehaviour
         else localPlayer = 2;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            if (mainCam.enabled)// si 2d
+            {
+                mainCam.enabled = false;
+                cam.enabled = true;
+            }
+            else
+            {
+                mainCam.enabled = true;
+                cam.enabled = false;
+            }
+        }
+    }
+
     public void DeplacerPion() // A compléter.
     {
         // Get the NbCase available to use in movement.
