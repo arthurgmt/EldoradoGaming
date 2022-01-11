@@ -42,10 +42,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
-            PhotonNetwork.LoadLevel("Lobby");
-        else
-            PhotonNetwork.LoadLevel("PlayingRoom");
+        PhotonNetwork.LoadLevel("Lobby");
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
