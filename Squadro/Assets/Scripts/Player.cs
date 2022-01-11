@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Player
 {
-    public GameObject[] pions = new GameObject[5];
-    private int nbPiecesAllerRetour; 
-    public Player(GameObject[] pions)
+    public InitPion[] pions = new InitPion[5];
+    private int nbPiecesAllerRetour;
+    public Player(InitPion[] pions)
     {
         this.nbPiecesAllerRetour = 0;
         this.pions = pions;
     }
 
-    public GameObject getPionWithIndex(int i)
+    public InitPion getPionWithIndex(int i)
     {
         return this.pions[i];
     }
@@ -25,6 +25,14 @@ public class Player
     public int getNbPieces()
     {
         return this.nbPiecesAllerRetour;
+    }
+
+    public InitPion getInitPionWithInfo(int ligne, int colonne)
+    {
+        for (int i = 0; i < 5; i++)
+            if (pions[i].ligne == ligne && pions[i].colonne == colonne)
+                return pions[i];
+        return null;
     }
 
     //public abstract void deplacerPion();

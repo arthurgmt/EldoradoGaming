@@ -35,13 +35,13 @@ public class Plateau : MonoBehaviour
 
         // Instantiate at position (0, 0, 0) and zero rotation.
         Vector3 v1;
-        GameObject[] pionsP1 = new GameObject[5];
-        GameObject[] pionsP2 = new GameObject[5];
+        InitPion[] pionsP1 = new InitPion[5];
+        InitPion[] pionsP2 = new InitPion[5];
 
         for (int i = 0; i < 5; i++)
         {
             v1 = new Vector3(24, 3, initialValue - i * 7);
-            pionsP1[4 - i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f));
+            pionsP1[4 - i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f)).GetComponent<InitPion>();
             pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
             pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
             pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
@@ -56,7 +56,7 @@ public class Plateau : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             v1 = new Vector3(initialValue - i * 7, 3, 31);
-            pionsP2[i] = Instantiate(myPrefab, v1, Quaternion.identity);
+            pionsP2[i] = Instantiate(myPrefab, v1, Quaternion.identity).GetComponent<InitPion>();
             pionsP2[i].tag = "Pion" + (i + 6).ToString();
             pionsP2[i].GetComponent<InitPion>().joueur = 2;
             pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
@@ -190,7 +190,7 @@ public class Plateau : MonoBehaviour
         this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
         SelectedPion = null;
         DisableButton();//désactiver le bouton.
-        endTurn(pion);
+        endTurn(pion.joueur,ligne,colonne);
     }
 
     public void ReproduireDeplacement(InitPion pion) // A compléter.
@@ -336,9 +336,9 @@ public class Plateau : MonoBehaviour
         confirmButton.interactable = true;
     }
 
-    private void resetInitialPosition(GameObject[] playerArray, int index, int ligne, int colonne)
+    private void resetInitialPosition(InitPion[] playerArray, int index, int ligne, int colonne)
     {
-        InitPion pion = playerArray[index].GetComponent<InitPion>();
+        InitPion pion = playerArray[index];
         Vector3 temp = pion.absolutePosition;
         pion.MovedCase = 0;
         playerArray[index].transform.position = temp;
@@ -367,16 +367,24 @@ public class Plateau : MonoBehaviour
         return this.partie;
     }
 
-    private void endTurn(InitPion pion)
+    private void endTurn(int joueur,int ligne,int colonne)
     {
         this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
-        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { this.partie.tourJoueur,pion });
+        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { this.partie.tourJoueur,joueur,ligne,colonne });
     }
 
     [PunRPC]
-    private void RPC_EndTurn(int tourJoueur,InitPion pion)
+    private void RPC_EndTurn(int tourJoueur,int joueur,int ligne,int colonne)
     {
         this.partie.tourJoueur = tourJoueur;
+        InitPion pion = GetTheMovedPion(joueur, ligne, colonne);
         ReproduireDeplacement(pion);
+    }
+
+    private InitPion GetTheMovedPion(int joueur,int ligne,int colonne)
+    {
+        if (joueur == 1)
+            return this.partie.player1.getInitPionWithInfo(ligne, colonne);
+        return this.partie.player2.getInitPionWithInfo(ligne, colonne);
     }
 }
