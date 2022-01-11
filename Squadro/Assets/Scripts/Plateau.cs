@@ -70,8 +70,7 @@ public class Plateau : MonoBehaviour
             pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
             pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
         }
-
-            for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
+        for (int i = 1; i < 6; i++)
         {
             plateau[i, 0] = true;
             plateau[6, i] = true;
@@ -90,114 +89,16 @@ public class Plateau : MonoBehaviour
     {
         // Get the NbCase available to use in movement.
         InitPion pion = SelectedPion.GetComponent<InitPion>();
-        int NbCase = pion.NbCase;
-        int joueur = pion.joueur;
         int ligne = pion.ligne;
         int colonne = pion.colonne;
-        SelectedPion.GetComponent<SelectPion>().selected = false;
-        bool collision = false;
-        bool sauvCollision = false;
-        int parcours, deplacement;
-        if (joueur == 1)
-        {
-            //il faut après verifier les rotations.
-            if (!pion.rotated)
-            {
-                parcours = colonne + 1;
-                while ((parcours <= colonne + NbCase || collision) && parcours <= 6)
-                {
-                    sauvCollision = collision;
-                    collision = this.plateau[ligne, parcours];
-                    parcours++;
-                    if (collision)
-                    {
-                        resetInitialPosition(this.partie.player2.pions, parcours - 2, ligne, parcours - 1);
-                    }
-                    else if (sauvCollision)
-                        break;
-                }
-                deplacement = parcours - colonne - 1;
-                pion.colonne += deplacement;
-            }
-            else
-            {
-                parcours = colonne - 1;
-                while ((parcours >= colonne - NbCase || collision) && parcours >= 0)
-                {
-                    sauvCollision = collision;
-                    collision = this.plateau[ligne, parcours];
-                    parcours--;
-                    if (collision)
-                        resetInitialPosition(this.partie.player2.pions, parcours, ligne, parcours + 1);
-                    else if (sauvCollision)
-                        break;
-                }
-                deplacement = colonne - parcours - 1;
-                pion.colonne -= deplacement;
-            }
-        }
-        else
-        {
-            if (!pion.rotated)
-            {
-                parcours = ligne - 1;
-                while ((parcours >= ligne - NbCase || collision) && parcours >= 0)
-                {
-                    sauvCollision = collision;
-                    collision = this.plateau[parcours, colonne];
-                    parcours--;
-                    if (collision)
-                        resetInitialPosition(this.partie.player1.pions, parcours, parcours + 1, colonne);
-                    else if (sauvCollision)
-                        break;
-                }
-                deplacement = ligne - parcours - 1;
-                pion.ligne -= deplacement;
-            }
-            else
-            {
-                parcours = ligne + 1;
-                while ((parcours <= ligne + NbCase || collision) && parcours <= 6)
-                {
-                    sauvCollision = collision;
-                    collision = this.plateau[parcours, colonne];
-                    parcours++;
-                    if (collision)
-                        resetInitialPosition(this.partie.player1.pions, parcours - 2, parcours - 1, colonne);
-                    else if (sauvCollision)
-                        break;
-                }
-                deplacement = parcours - ligne - 1;
-                pion.ligne += deplacement;
-            }
-        }
-        pion.MovedCase += deplacement;
-        SelectedPion.transform.Translate(0, 0, -deplacement * 7);
-        this.plateau[pion.ligne, pion.colonne] = true;
-        this.plateau[ligne, colonne] = false;
-        if (pion.MovedCase == 6)
-        {
-            if (!pion.rotated)
-            {
-
-                this.RotatePion(SelectedPion.GetComponent<InitPion>());
-            }
-            else
-            {
-                pion.DisparitionPion();
-                //this.SelectedPion.SetActive(false);
-                this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
-                this.incrementNbPionsAllerRetourPlayer(pion.joueur);
-
-            } // le pion a fait un tour.
-        }
-        this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+        PureDeplacement(pion);
         SelectedPion = null;
+        pion.GetComponent<SelectPion>().UnShowMove();
         DisableButton();//désactiver le bouton.
         endTurn(pion.joueur,ligne,colonne);
     }
 
-    public void ReproduireDeplacement(InitPion pion) // A compléter.
+    public void PureDeplacement(InitPion pion) // A compléter.
     {
         // Get the NbCase available to use in movement.
         int NbCase = pion.NbCase;
@@ -289,21 +190,14 @@ public class Plateau : MonoBehaviour
         {
             if (!pion.rotated)
             {
-
                 this.RotatePion(pion);
             }
             else
             {
                 pion.DisparitionPion();
-                //this.SelectedPion.SetActive(false);
-                //this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
                 this.incrementNbPionsAllerRetourPlayer(pion.joueur);
-
             } // le pion a fait un tour.
         }
-        //this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
-        SelectedPion = null;
-       // DisableButton();//désactiver le bouton.
     }
 
     private void RotatePion(InitPion pion)
@@ -381,7 +275,7 @@ public class Plateau : MonoBehaviour
     {
         this.partie.tourJoueur = tourJoueur;
         InitPion pion = GetTheMovedPion(joueur, ligne, colonne);
-        ReproduireDeplacement(pion);
+        PureDeplacement(pion);
     }
 
     private InitPion GetTheMovedPion(int joueur,int ligne,int colonne)
