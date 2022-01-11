@@ -96,7 +96,6 @@ public class Plateau : MonoBehaviour
         PureDeplacement(pion);
         SelectedPion = null;
         pion.GetComponent<SelectPion>().UnShowMove(pion.joueur);
-        DisableButton();//désactiver le bouton.
         endTurn(pion.joueur,ligne,colonne);
     }
 
@@ -107,7 +106,6 @@ public class Plateau : MonoBehaviour
         int joueur = pion.joueur;
         int ligne = pion.ligne;
         int colonne = pion.colonne;
-        //SelectedPion.GetComponent<SelectPion>().selected = false;
         bool collision = false;
         bool sauvCollision = false;
         int parcours, deplacement;
@@ -223,16 +221,6 @@ public class Plateau : MonoBehaviour
         pion.absolutePosition = pion.transform.position;// setter le point absolue du parcours.
         pion.rotated = true;
         pion.MovedCase = 0;
-    }
-
-    public void DisableButton()
-    {
-        confirmButton.interactable = false;
-    }
-
-    public void EnableButton()
-    {
-        confirmButton.interactable = true;
     }
 
     private void resetInitialPosition(InitPion[] playerArray, int index, int ligne, int colonne)

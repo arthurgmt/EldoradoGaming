@@ -13,7 +13,7 @@ public class SelectPion : MonoBehaviour
     public GameObject PionRedWithLowAlpha;
     public GameObject PionYellowWithLowAlpha;
     private Plateau plateau;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,32 +24,35 @@ public class SelectPion : MonoBehaviour
     {
         if (this.plateau.getPartie().tourJoueur == this.GetComponent<InitPion>().joueur && this.plateau.getPartie().tourJoueur == this.plateau.localPlayer)
         {
-            if (this.plateau.getPartie().tourJoueur == 1)
+            if (selected)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().UnShowMove(1);
-                }
+                this.plateau.DeplacerPion();
+                selected = false;
             }
             else
             {
-                for (int i = 0; i < 5; i++)
+                if (this.plateau.getPartie().tourJoueur == 1)
                 {
-                   
-                    this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().UnShowMove(2);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().selected = false;
+                        this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().UnShowMove(1);
+                    }
                 }
-            }
-            selected = true;
-            plateau.SelectedPion = GameObject.FindWithTag(this.tag);
-            plateau.EnableButton();
-            ShowMove();
-        }
-    }
+                else
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
 
-    void Update()
-    {
+                        this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().selected = false;
+                        this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().UnShowMove(2);
+                    }
+                }
+                selected = true;
+                plateau.SelectedPion = GameObject.FindWithTag(this.tag);
+                ShowMove();
+            }
+        }
     }
 
     void ShowMove()
@@ -58,21 +61,21 @@ public class SelectPion : MonoBehaviour
         this.GetComponent<Renderer>().material = pion.joueur == 1 ? m_selection_red : m_selection_yellow;
         float t = this.transform.rotation.y;
         string tag_p = this.tag + "alpha";
-        int deplacement = pion.MovedCase + pion.NbCase <= 6 ? pion.NbCase : 6 - pion.MovedCase; 
+        int deplacement = pion.MovedCase + pion.NbCase <= 6 ? pion.NbCase : 6 - pion.MovedCase;
         // check the rotation
         if (pion.joueur == 1 && !pion.rotated)
         {
             float x = this.transform.position.x - (deplacement * 7);
             float z = this.transform.position.z;
             Instantiate(PionRedWithLowAlpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
-        }   
+        }
         else if (pion.joueur == 1 && pion.rotated)
         {
             float x = this.transform.position.x + (deplacement * 7);
             float z = this.transform.position.z;
             Instantiate(PionRedWithLowAlpha, new Vector3(x, 3, z), Quaternion.Euler(0f, -90f, 0f)).tag = tag_p;
         }
-        else if(pion.joueur == 2 && !pion.rotated)
+        else if (pion.joueur == 2 && !pion.rotated)
         {
             float x = this.transform.position.x;
             float z = this.transform.position.z - (deplacement * 7);
