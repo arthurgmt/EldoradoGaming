@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7090172883992435473}
   - component: {fileID: 1435356689363263856}
   - component: {fileID: 3959585375713459419}
-  - component: {fileID: 8719517759138503064}
+  - component: {fileID: 1928809673108154950}
   - component: {fileID: 4997474651822753389}
   - component: {fileID: 290273335242555446}
   - component: {fileID: 8309101278579330193}
@@ -921,7 +921,7 @@ MonoBehaviour:
   absolutePosition: {x: 0, y: 0, z: 0}
   absoluteLigne: 0
   absoluteColonne: 0
---- !u!114 &8719517759138503064
+--- !u!114 &1928809673108154950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -933,12 +933,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccd06371df2e104d84b5b5154602826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_base: {fileID: 2100000, guid: 91cf64de0af542c469dbe589d36658ad, type: 2}
-  m_selection: {fileID: 2100000, guid: b171f7db43bfd2c43bd83a751364f6b5, type: 2}
+  m_base_red: {fileID: 2100000, guid: 91cf64de0af542c469dbe589d36658ad, type: 2}
+  m_selection_red: {fileID: 2100000, guid: b171f7db43bfd2c43bd83a751364f6b5, type: 2}
+  m_base_yellow: {fileID: 2100000, guid: 4a91a300b083b6d45bfb6fd7e896ef47, type: 2}
+  m_selection_yellow: {fileID: 2100000, guid: 7e4226eb693f3554997bcbf254da842b, type: 2}
   selected: 0
-  Pionwithlowalpha: {fileID: 3130559076386586715, guid: 6ed8c78ec9c30714ab6e8ded8d44843d,
+  PionRedWithLowAlpha: {fileID: 3130559076386586715, guid: 6ed8c78ec9c30714ab6e8ded8d44843d,
     type: 3}
-  plateau: {fileID: 0}
+  PionYellowWithLowAlpha: {fileID: 3130559076386586715, guid: 1874e620b279c29429dd476efa1a1cec,
+    type: 3}
 --- !u!95 &4997474651822753389
 Animator:
   serializedVersion: 3

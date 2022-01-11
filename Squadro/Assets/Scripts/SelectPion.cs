@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class SelectPion : MonoBehaviour
 {
-    public Material m_base;
-    public Material m_selection;
+    public Material m_base_red;
+    public Material m_selection_red;
+    public Material m_base_yellow;
+    public Material m_selection_yellow;
     public bool selected = false;
-    public GameObject Pionwithlowalpha;
-    public Plateau plateau;
+    public GameObject PionRedWithLowAlpha;
+    public GameObject PionYellowWithLowAlpha;
+    private Plateau plateau;
     
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,7 @@ public class SelectPion : MonoBehaviour
                 for (int i = 0; i < 5; i++)
                 {
                     this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().UnShowMove();
+                    this.plateau.getPartie().player1.pions[i].GetComponent<SelectPion>().UnShowMove(1);
                 }
             }
             else
@@ -35,7 +38,7 @@ public class SelectPion : MonoBehaviour
                 {
                    
                     this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().selected = false;
-                    this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().UnShowMove();
+                    this.plateau.getPartie().player2.pions[i].GetComponent<SelectPion>().UnShowMove(2);
                 }
             }
             selected = true;
@@ -51,8 +54,8 @@ public class SelectPion : MonoBehaviour
 
     void ShowMove()
     {
-        this.GetComponent<Renderer>().material = m_selection;
         InitPion pion = this.plateau.SelectedPion.GetComponent<InitPion>();
+        this.GetComponent<Renderer>().material = pion.joueur == 1 ? m_selection_red : m_selection_yellow;
         float t = this.transform.rotation.y;
         string tag_p = this.tag + "alpha";
         int deplacement = pion.MovedCase + pion.NbCase <= 6 ? pion.NbCase : 6 - pion.MovedCase; 
@@ -61,32 +64,32 @@ public class SelectPion : MonoBehaviour
         {
             float x = this.transform.position.x - (deplacement * 7);
             float z = this.transform.position.z;
-            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
+            Instantiate(PionRedWithLowAlpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 90f, 0f)).tag = tag_p;
         }   
         else if (pion.joueur == 1 && pion.rotated)
         {
             float x = this.transform.position.x + (deplacement * 7);
             float z = this.transform.position.z;
-            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, -90f, 0f)).tag = tag_p;
+            Instantiate(PionRedWithLowAlpha, new Vector3(x, 3, z), Quaternion.Euler(0f, -90f, 0f)).tag = tag_p;
         }
         else if(pion.joueur == 2 && !pion.rotated)
         {
             float x = this.transform.position.x;
             float z = this.transform.position.z - (deplacement * 7);
-            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
+            Instantiate(PionYellowWithLowAlpha, new Vector3(x, 3, z), Quaternion.identity).tag = tag_p;
         }
         else
         {
             float x = this.transform.position.x;
             float z = this.transform.position.z + (deplacement * 7);
-            Instantiate(Pionwithlowalpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 180f, 0f)).tag = tag_p;
+            Instantiate(PionYellowWithLowAlpha, new Vector3(x, 3, z), Quaternion.Euler(0f, 180f, 0f)).tag = tag_p;
         }
     }
 
-    public void UnShowMove()
+    public void UnShowMove(int joueur)
     {
         string tag_p = this.tag + "alpha";
-        this.GetComponent<Renderer>().material = m_base;
+        this.GetComponent<Renderer>().material = joueur == 1 ? m_base_red : m_base_yellow;
         Destroy(GameObject.FindWithTag(tag_p));
     }
 

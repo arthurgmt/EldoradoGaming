@@ -95,7 +95,7 @@ public class Plateau : MonoBehaviour
         int colonne = pion.colonne;
         PureDeplacement(pion);
         SelectedPion = null;
-        pion.GetComponent<SelectPion>().UnShowMove();
+        pion.GetComponent<SelectPion>().UnShowMove(pion.joueur);
         DisableButton();//désactiver le bouton.
         endTurn(pion.joueur,ligne,colonne);
     }
