@@ -1464,7 +1464,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 1728714052}
   cam: {fileID: 835149304}
-  myPrefab: {fileID: 7090172883992435471, guid: 56e172a88db0e724caf4be0cdbf749c5,
+  myPrefabRed: {fileID: 7090172883992435471, guid: 56e172a88db0e724caf4be0cdbf749c5,
+    type: 3}
+  myPrefabYellow: {fileID: 7090172883992435471, guid: 05ead167da1547c43855c96a78496a24,
     type: 3}
   SelectedPion: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
@@ -2120,7 +2122,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42252
+  m_Name: pb_Mesh141018
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

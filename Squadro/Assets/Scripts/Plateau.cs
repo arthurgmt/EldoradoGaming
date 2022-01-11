@@ -7,7 +7,8 @@ public class Plateau : MonoBehaviour
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
     public Camera mainCam; // 2d dkk
     public Camera cam; //3d
-    public GameObject myPrefab;
+    public GameObject myPrefabRed;
+    public GameObject myPrefabYellow;
     public GameObject SelectedPion;
     public Button confirmButton;
 
@@ -44,7 +45,7 @@ public class Plateau : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             v1 = new Vector3(24, 3, initialValue - i * 7);
-            pionsP1[4 - i] = Instantiate(myPrefab, v1, Quaternion.Euler(0f, 90f, 0f)).GetComponent<InitPion>();
+            pionsP1[4 - i] = Instantiate(myPrefabRed, v1, Quaternion.Euler(0f, 90f, 0f)).GetComponent<InitPion>();
             pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
             pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
             pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
@@ -60,7 +61,7 @@ public class Plateau : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             v1 = new Vector3(initialValue - i * 7, 3, 31);
-            pionsP2[i] = Instantiate(myPrefab, v1, Quaternion.identity).GetComponent<InitPion>();
+            pionsP2[i] = Instantiate(myPrefabYellow, v1, Quaternion.identity).GetComponent<InitPion>();
             pionsP2[i].tag = "Pion" + (i + 6).ToString();
             pionsP2[i].GetComponent<InitPion>().joueur = 2;
             pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
@@ -76,7 +77,6 @@ public class Plateau : MonoBehaviour
             plateau[6, i] = true;
         }
         this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
-        Debug.LogError(GameObject.FindWithTag("GameController"));
         Player player1 = new Player(pionsP1);
         this.partie.setPlayer1(player1);
         Player player2 = new Player(pionsP2);
