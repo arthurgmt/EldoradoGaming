@@ -3669,6 +3669,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1700203679}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1056891555 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7683568883346317520, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1700203679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25e76f909bb2ba4ab4071e960ebe175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1082964289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5848,6 +5860,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1642597289}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1656070624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1700203679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1671214821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5995,6 +6019,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7683568883346317520, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: cameraSpeedSlider
+      value: 
+      objectReference: {fileID: 1656070624}
     - target: {fileID: 7683568883375723555, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6171,6 +6200,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1056891555}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1056891555}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167863629112322679, guid: f374c4bd4b458fc4ebeb1f98361feb24,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8246783599761685412, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}

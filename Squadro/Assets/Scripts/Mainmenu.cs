@@ -28,7 +28,10 @@ public class Mainmenu : MonoBehaviour
 
     public void CloseSettings()
     {
+        SettingsMenu menu = settingsWindow.GetComponent<SettingsMenu>();
         settingsWindow.gameObject.SetActive(false);
+        GameConf gameConf = new GameConf(menu.speed, menu.volume, menu.resolution);
+        DataSaver.saveData<GameConf>(gameConf, "gameConf");
     }
 
     public void ClosePlaying()
@@ -41,13 +44,5 @@ public class Mainmenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-    public void CreateGame()
-    {
-        SceneManager.LoadScene("Partie");
-    }
-    public void JoinGame()
-    {
-
     }
 }

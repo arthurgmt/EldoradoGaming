@@ -1302,8 +1302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 704443556}
   cam: {fileID: 562950020}
-  myPrefab: {fileID: 7090172883992435471, guid: 56e172a88db0e724caf4be0cdbf749c5,
-    type: 3}
+  myPrefabRed: {fileID: 0}
+  myPrefabYellow: {fileID: 0}
   SelectedPion: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
   confirmButton: {fileID: 1946503650}

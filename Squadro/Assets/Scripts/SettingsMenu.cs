@@ -15,14 +15,18 @@ public class SettingsMenu : MonoBehaviour
     
     public Slider musicSlider;
 
-    public GameObject cam2d;
+    public Slider cameraSpeedSlider;
 
-    public GameObject cam3d;
+    public float speed;
+    public float volume;
+    public string resolution;
 
     public void Start()
     {
-        audioMixer.GetFloat("Music", out float musicValueForSlider);
-        musicSlider.value = musicValueForSlider;
+        GameConf c = DataSaver.loadData<GameConf>("gameConf");
+        //audioMixer.GetFloat("Music", out float musicValueForSlider);
+        musicSlider.value = c.musicSound;
+        cameraSpeedSlider.value = c.speedCamera;
 
         // On récupère toutes les résolutions puis on fait un distinct pour ne pas les avoirs en doubles 
         resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
@@ -51,6 +55,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void SetVolume(float volume)
     {
+        this.volume = volume;
         audioMixer.SetFloat("Music", volume);
     }
 
@@ -62,15 +67,14 @@ public class SettingsMenu : MonoBehaviour
     public void SetResolution(int resolIndex)
     {
         Resolution resolution = resolutions[resolIndex];
-
+        this.resolution = resolution.width + "x" + resolution.height;
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
     }
 
-    public void SetRotation(float speedrot)
+    public void SetRotation()
     {
-        cam3d.GetComponent<main_cam>().speed = speedrot;
-        cam2d.GetComponent<main_cam>().speed = speedrot;
+        this.speed = this.cameraSpeedSlider.value;
     }
 
 }

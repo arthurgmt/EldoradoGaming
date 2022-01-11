@@ -30,7 +30,8 @@ public class Plateau : MonoBehaviour
 
     private void Start()
     {
-
+        GameConf c = DataSaver.loadData<GameConf>("gameConf");
+        mainCam.GetComponent<main_cam>().speed = c.speedCamera;
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
