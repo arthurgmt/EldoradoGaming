@@ -14,6 +14,7 @@ public class Mainmenu : MonoBehaviour
 
     public void Play()
     {
+        Screen.SetResolution(1920,1080,true);
         play.gameObject.SetActive(false);
         settings.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
