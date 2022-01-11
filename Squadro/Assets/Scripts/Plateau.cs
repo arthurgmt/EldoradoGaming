@@ -38,8 +38,8 @@ public class Plateau : MonoBehaviour
         GameObject[] pionsP1 = new GameObject[5];
         GameObject[] pionsP2 = new GameObject[5];
         if (PhotonNetwork.IsMasterClient)
-        {   
-            activePlayer
+        {
+            
             for (int i = 0; i < 5; i++)
             {
                 v1 = new Vector3(24, 3, initialValue - i * 7);
