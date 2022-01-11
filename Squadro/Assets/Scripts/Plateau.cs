@@ -176,7 +176,7 @@ public class Plateau : MonoBehaviour
             if (!pion.rotated)
             {
 
-                this.RotatePion();
+                this.RotatePion(SelectedPion.GetComponent<InitPion>());
             }
             else
             {
@@ -200,7 +200,7 @@ public class Plateau : MonoBehaviour
         int joueur = pion.joueur;
         int ligne = pion.ligne;
         int colonne = pion.colonne;
-        SelectedPion.GetComponent<SelectPion>().selected = false;
+        //SelectedPion.GetComponent<SelectPion>().selected = false;
         bool collision = false;
         bool sauvCollision = false;
         int parcours, deplacement;
@@ -278,7 +278,7 @@ public class Plateau : MonoBehaviour
             }
         }
         pion.MovedCase += deplacement;
-        SelectedPion.transform.Translate(0, 0, -deplacement * 7);
+        pion.transform.Translate(0, 0, -deplacement * 7);
         this.plateau[pion.ligne, pion.colonne] = true;
         this.plateau[ligne, colonne] = false;
         if (pion.MovedCase == 6)
@@ -286,25 +286,24 @@ public class Plateau : MonoBehaviour
             if (!pion.rotated)
             {
 
-                this.RotatePion();
+                this.RotatePion(pion);
             }
             else
             {
                 pion.DisparitionPion();
                 //this.SelectedPion.SetActive(false);
-                this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+                //this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
                 this.incrementNbPionsAllerRetourPlayer(pion.joueur);
 
             } // le pion a fait un tour.
         }
-        this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+        //this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
         SelectedPion = null;
-        DisableButton();//désactiver le bouton.
+        //DisableButton();//désactiver le bouton.
     }
 
-    private void RotatePion()
+    private void RotatePion(InitPion pion)
     {
-        InitPion pion = SelectedPion.GetComponent<InitPion>();
         if (pion.joueur == 1)//rotation joueur 1
         {
             float pos = pion.transform.position.z;
