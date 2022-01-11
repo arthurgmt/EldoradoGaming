@@ -6,16 +6,23 @@ using UnityEngine;
 
 public class LobbyScript : MonoBehaviour
 {
+    private PhotonView photonView;
     // Start is called before the first frame update
+    void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+        photonView = GetComponent<PhotonView>();
+    }
     void Start()
     {
         if (PhotonNetwork.LocalPlayer.ActorNumber > 1)
-            PhotonNetwork.LoadLevel("PlayingRoom");
+            photonView.RPC(nameof(RPC_loadPlayingRoom), RpcTarget.AllBuffered, new object[] { });
     }
 
     // Update is called once per frame
-    void Update()
+    [PunRPC]
+    void RPC_loadPlayingRoom()
     {
-        
+        PhotonNetwork.LoadLevel("PlayingRoom");
     }
 }
