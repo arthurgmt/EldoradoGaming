@@ -24,17 +24,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()// when connected to the server.
     {
-        
+
     }
 
     public void CreateRoom()// do something when the game already exists.
     {
-        PhotonNetwork.CreateRoom(create.text,new RoomOptions { MaxPlayers = MAX_PLAYERS });
+        PhotonNetwork.CreateRoom(create.text, new RoomOptions { MaxPlayers = MAX_PLAYERS });
     }
 
     public void JoinRoom() // if the room does not exist create one.
     {
-        if(join.text.Length != 0)
+        if (join.text.Length != 0)
             PhotonNetwork.JoinRoom(join.text);
         else
             PhotonNetwork.JoinRandomRoom(null, MAX_PLAYERS);
@@ -42,7 +42,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("PlayingRoom");
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            PhotonNetwork.LoadLevel("Lobby");
+        else
+            PhotonNetwork.LoadLevel("PlayingRoom");
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -52,19 +55,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             MaxPlayers = MAX_PLAYERS,
         });
-    }
-
-    private void ChooseThePlayerColor() //TODO : choose the color.
-    {
-        if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
-        {
-            /*var player = PhotonNetwork.CurrentRoom.GetPlayer(1);
-            if (player.CustomProperties.ContainsKey(TEAM))
-            {
-                var occupiedTeam = player.CustomProperties[TEAM];
-                uiManager.RestrictTeamChoice((TeamColor)occupiedTeam);
-            }*/
-        }
     }
 
     internal bool IsRoomFull()
