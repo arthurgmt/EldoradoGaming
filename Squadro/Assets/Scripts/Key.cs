@@ -29,7 +29,15 @@ public class Key : MonoBehaviour
             reference.Child(input).SetValueAsync("+");
             SceneManager.LoadScene("OfficialScene");
         }
-        else Debug.LogError("there is error");
+        else
+        {
+            key.image.color = new Color(0.92f,0.16f,0.12f);
+        }
+    }
+
+    public void onChangeValueInputField()
+    {
+        key.image.color = new Color(0.78f,0.78f,0.78f);
     }
 
     private void OnSubmit()
