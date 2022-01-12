@@ -25,6 +25,9 @@ public class Mainmenu : MonoBehaviour
     public void Settings()
     {
         settingsWindow.gameObject.SetActive(true);
+        play.gameObject.SetActive(false);
+        settings.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
     }
 
     public void CloseSettings()
@@ -33,6 +36,9 @@ public class Mainmenu : MonoBehaviour
         settingsWindow.gameObject.SetActive(false);
         GameConf gameConf = new GameConf(menu.speed, menu.volume);
         DataSaver.saveData<GameConf>(gameConf, "gameConf");
+        play.gameObject.SetActive(true);
+        settings.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
     }
 
     public void ClosePlaying()
