@@ -7,7 +7,7 @@ using System.Linq;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    
+
     public Slider musicSlider;
 
     public Slider cameraSpeedSlider;
@@ -19,8 +19,16 @@ public class SettingsMenu : MonoBehaviour
     public void Start()
     {
         GameConf c = DataSaver.loadData<GameConf>("gameConf");
-        musicSlider.value = c.musicSound;
-        cameraSpeedSlider.value = c.speedCamera;
+        if (c != null)
+        {
+            musicSlider.value = c.musicSound;
+            cameraSpeedSlider.value = c.speedCamera;
+        }
+        else
+        {
+            musicSlider.value = 50;
+            cameraSpeedSlider.value = 50;
+        }
     }
     public void SetVolume()
     {
