@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class Plateau : MonoBehaviour
 {
@@ -262,8 +263,8 @@ public class Plateau : MonoBehaviour
             fin = this.partie.player2.incrementerNbPiecesAndTest();
         if (fin)
         {
-            /*Faire un affichage UI*/
-            Debug.Log("Player N=" + joueur + " has win");
+            PlayerPrefs.SetInt("joueur", joueur);
+            PhotonNetwork.LoadLevel("EndgameScene");
         }
     }
 

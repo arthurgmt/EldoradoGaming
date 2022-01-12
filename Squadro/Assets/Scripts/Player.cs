@@ -19,7 +19,7 @@ public class Player
 
     public bool incrementerNbPiecesAndTest()
     {
-        return ++this.nbPiecesAllerRetour == 4;
+        return ++this.nbPiecesAllerRetour == 1;
     }
 
     public int getNbPieces()
