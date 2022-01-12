@@ -31,7 +31,7 @@ public class Mainmenu : MonoBehaviour
     {
         SettingsMenu menu = settingsWindow.GetComponent<SettingsMenu>();
         settingsWindow.gameObject.SetActive(false);
-        GameConf gameConf = new GameConf(menu.speed, menu.volume, menu.resolution);
+        GameConf gameConf = new GameConf(menu.speed, menu.volume);
         DataSaver.saveData<GameConf>(gameConf, "gameConf");
     }
 

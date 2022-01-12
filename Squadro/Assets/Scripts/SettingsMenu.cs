@@ -14,7 +14,6 @@ public class SettingsMenu : MonoBehaviour
 
     public float speed;
     public float volume;
-    public string resolution;
 
     public void Start()
     {
