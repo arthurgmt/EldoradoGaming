@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class Plateau : MonoBehaviour
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
-    public Camera mainCam; // 2d 
+    public Camera mainCam; // 2d dkk
     public Camera cam; //3d
-    public GameObject myPrefab;
+    public GameObject myPrefabRed;
+    public GameObject myPrefabYellow;
     public GameObject SelectedPion;
     public Button confirmButton;
 
@@ -20,6 +22,7 @@ public class Plateau : MonoBehaviour
     private Player activePlayer;
 
     private PhotonView photonView;
+    public int localPlayer;
 
     private void Awake()
     {
@@ -28,6 +31,8 @@ public class Plateau : MonoBehaviour
 
     private void Start()
     {
+        GameConf c = DataSaver.loadData<GameConf>("gameConf");
+        mainCam.GetComponent<main_cam>().speed = c.speedCamera;
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -35,63 +40,91 @@ public class Plateau : MonoBehaviour
 
         // Instantiate at position (0, 0, 0) and zero rotation.
         Vector3 v1;
-        GameObject[] pionsP1 = new GameObject[5];
-        GameObject[] pionsP2 = new GameObject[5];
-        if (PhotonNetwork.IsMasterClient)
-        {
-            
-            for (int i = 0; i < 5; i++)
-            {
-                v1 = new Vector3(24, 3, initialValue - i * 7);
-                pionsP1[4 - i] = PhotonNetwork.Instantiate(myPrefab.name, v1, Quaternion.Euler(0f, 90f, 0f));
-                pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
-                pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
-                pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
-                pionsP1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
-                pionsP1[4 - i].GetComponent<InitPion>().colonne = 0;
-                pionsP1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-                pionsP1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
-                pionsP1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
-            }
-        }
-        else
-        {
-            initialValue = 13.4f;
-            for (int i = 0; i < 5; i++)
-            {
-                v1 = new Vector3(initialValue - i * 7, 3, 31);
-                pionsP2[i] = PhotonNetwork.Instantiate(myPrefab.name, v1, Quaternion.identity);
-                pionsP2[i].tag = "Pion" + (i + 6).ToString();
-                pionsP2[i].GetComponent<InitPion>().joueur = 2;
-                pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
-                pionsP2[i].GetComponent<InitPion>().ligne = 6;
-                pionsP2[i].GetComponent<InitPion>().colonne = i + 1;
-                pionsP2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
-                pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
-                pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
-            }
 
+        InitPion[] pionsP1 = new InitPion[5];
+        InitPion[] pionsP2 = new InitPion[5];
+
+        for (int i = 0; i < 5; i++)
+        {
+            v1 = new Vector3(24, 3, initialValue - i * 7);
+            pionsP1[4 - i] = Instantiate(myPrefabRed, v1, Quaternion.Euler(0f, 90f, 0f)).GetComponent<InitPion>();
+            pionsP1[4 - i].tag = "Pion" + (4 - i + 1).ToString();
+            pionsP1[4 - i].GetComponent<InitPion>().joueur = 1;
+            pionsP1[4 - i].GetComponent<InitPion>().absolutePosition = v1;
+            pionsP1[4 - i].GetComponent<InitPion>().ligne = 4 - i + 1;
+            pionsP1[4 - i].GetComponent<InitPion>().colonne = 0;
+            pionsP1[4 - i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            pionsP1[4 - i].GetComponent<InitPion>().absoluteLigne = 4 - i + 1;
+            pionsP1[4 - i].GetComponent<InitPion>().absoluteColonne = 0;
         }
-        for (int i = 1; i < 6; i++)//faire l'initialisation du plateau.
+
+        initialValue = 13.4f;
+
+        for (int i = 0; i < 5; i++)
+        {
+            v1 = new Vector3(initialValue - i * 7, 3, 31);
+            pionsP2[i] = Instantiate(myPrefabYellow, v1, Quaternion.identity).GetComponent<InitPion>();
+            pionsP2[i].tag = "Pion" + (i + 6).ToString();
+            pionsP2[i].GetComponent<InitPion>().joueur = 2;
+            pionsP2[i].GetComponent<InitPion>().absolutePosition = v1;
+            pionsP2[i].GetComponent<InitPion>().ligne = 6;
+            pionsP2[i].GetComponent<InitPion>().colonne = i + 1;
+            pionsP2[i].GetComponent<InitPion>().NbCase = arrayOfNbCasesDepart[i];
+            pionsP2[i].GetComponent<InitPion>().absoluteLigne = 6;
+            pionsP2[i].GetComponent<InitPion>().absoluteColonne = i + 1;
+        }
+        for (int i = 1; i < 6; i++)
         {
             plateau[i, 0] = true;
             plateau[6, i] = true;
         }
         this.partie = GameObject.FindWithTag("GameController").GetComponent<Partie>();
-        this.partie.setPlayer1(new Player(pionsP1));
-        this.partie.setPlayer2(new Player(pionsP2));
+        Player player1 = new Player(pionsP1);
+        this.partie.setPlayer1(player1);
+        Player player2 = new Player(pionsP2);
+        this.partie.setPlayer2(player2);
         this.partie.tourJoueur = 1;
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            this.localPlayer = 1;
+        else localPlayer = 2;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            if (mainCam.enabled)// si 2d
+            {
+                mainCam.enabled = false;
+                cam.enabled = true;
+            }
+            else
+            {
+                mainCam.enabled = true;
+                cam.enabled = false;
+            }
+        }
     }
 
     public void DeplacerPion() // A compléter.
     {
         // Get the NbCase available to use in movement.
         InitPion pion = SelectedPion.GetComponent<InitPion>();
+        int ligne = pion.ligne;
+        int colonne = pion.colonne;
+        PureDeplacement(pion);
+        SelectedPion = null;
+        pion.GetComponent<SelectPion>().UnShowMove(pion.joueur);
+        endTurn(pion.joueur,ligne,colonne);
+    }
+
+    public void PureDeplacement(InitPion pion) // A compléter.
+    {
+        // Get the NbCase available to use in movement.
         int NbCase = pion.NbCase;
         int joueur = pion.joueur;
         int ligne = pion.ligne;
         int colonne = pion.colonne;
-        SelectedPion.GetComponent<SelectPion>().selected = false;
         bool collision = false;
         bool sauvCollision = false;
         int parcours, deplacement;
@@ -169,36 +202,29 @@ public class Plateau : MonoBehaviour
             }
         }
         pion.MovedCase += deplacement;
-        SelectedPion.transform.Translate(0, 0, -deplacement * 7);
+        pion.transform.Translate(0, 0, -deplacement * 7);
         this.plateau[pion.ligne, pion.colonne] = true;
         this.plateau[ligne, colonne] = false;
-        if(pion.MovedCase == 6)
-		{
-            if (!pion.rotated){
-                
-                this.RotatePion();
+        if (pion.MovedCase == 6)
+        {
+            if (!pion.rotated)
+            {
+                this.RotatePion(pion);
             }
-            else {
-                pion.DisparitionPion();         
-                //this.SelectedPion.SetActive(false);
-                this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
+            else
+            {
+                pion.DisparitionPion();
                 this.incrementNbPionsAllerRetourPlayer(pion.joueur);
-                
             } // le pion a fait un tour.
         }
-        this.SelectedPion.GetComponent<SelectPion>().UnShowMove();
-        SelectedPion = null;
-        DisableButton();//désactiver le bouton.
-        endTurn();
     }
 
-    private void RotatePion()
+    private void RotatePion(InitPion pion)
     {
-        InitPion pion = SelectedPion.GetComponent<InitPion>();
         if (pion.joueur == 1)//rotation joueur 1
         {
             float pos = pion.transform.position.z;
-            pion.transform.position = new Vector3(-24f, 3f, pos-1f);
+            pion.transform.position = new Vector3(-24f, 3f, pos - 1f);
             pion.RotateMotionP1();
             pion.NbCase = this.arrayOfNbCasesRotate[pion.ligne - 1];
             pion.absoluteColonne = 6;
@@ -206,7 +232,7 @@ public class Plateau : MonoBehaviour
         else // rotation joueur 2
         {
             float pos = pion.transform.position.x;
-            pion.transform.position = new Vector3(pos+1f, 3f, -17f);
+            pion.transform.position = new Vector3(pos + 1f, 3f, -17f);
             pion.RotateMotionP2();
             pion.NbCase = this.arrayOfNbCasesRotate[pion.colonne - 1];
             pion.absoluteLigne = 0;
@@ -216,19 +242,9 @@ public class Plateau : MonoBehaviour
         pion.MovedCase = 0;
     }
 
-    public void DisableButton()
+    private void resetInitialPosition(InitPion[] playerArray, int index, int ligne, int colonne)
     {
-        confirmButton.interactable = false;
-    }
-
-    public void EnableButton()
-    {
-        confirmButton.interactable = true;
-    }
-
-    private void resetInitialPosition(GameObject[] playerArray, int index, int ligne, int colonne)
-    {
-        InitPion pion = playerArray[index].GetComponent<InitPion>();
+        InitPion pion = playerArray[index];
         Vector3 temp = pion.absolutePosition;
         pion.MovedCase = 0;
         playerArray[index].transform.position = temp;
@@ -237,35 +253,56 @@ public class Plateau : MonoBehaviour
         pion.ligne = pion.absoluteLigne;
         pion.colonne = pion.absoluteColonne;
     }
-      
+
     private void incrementNbPionsAllerRetourPlayer(int joueur)
     {
         bool fin;
         if (joueur == 1)
-            fin = this.partie.player1.incrementerNbPiecesAndTest();      
+            fin = this.partie.player1.incrementerNbPiecesAndTest();
         else
             fin = this.partie.player2.incrementerNbPiecesAndTest();
         if (fin)
         {
-            /*Faire un affichage UI*/
-            Debug.Log("Player N=" + joueur + " has win");
+            PlayerPrefs.SetInt("joueur", joueur);
+            endGame(joueur);
         }
-    }
-
-    private void endTurn()
-    {
-        this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
-        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.AllBuffered, new object[] { this.partie.tourJoueur });
-    }
-
-    [PunRPC]
-    private void RPC_EndTurn(int tourJoueur)
-    {
-        this.partie.tourJoueur = tourJoueur;
     }
 
     public Partie getPartie()
     {
         return this.partie;
     }
+
+    private void endTurn(int joueur,int ligne,int colonne)
+    {
+        this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
+        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { this.partie.tourJoueur,joueur,ligne,colonne });
+    }
+
+    [PunRPC]
+    private void RPC_EndTurn(int tourJoueur,int joueur,int ligne,int colonne)
+    {
+        this.partie.tourJoueur = tourJoueur;
+        InitPion pion = GetTheMovedPion(joueur, ligne, colonne);
+        PureDeplacement(pion);
+    }
+
+    private void endGame(int winner)
+    {
+        photonView.RPC(nameof(RPC_EndGame), RpcTarget.AllBuffered, new object[] { winner});
+    }
+
+    [PunRPC]
+    private void RPC_EndGame(int winner)//RPC for game ending
+    {
+        PlayerPrefs.SetInt("joueur", winner);
+        PhotonNetwork.LoadLevel("EndgameScene");
+    }
+    private InitPion GetTheMovedPion(int joueur,int ligne,int colonne)
+    {
+        if (joueur == 1)
+            return this.partie.player1.getInitPionWithInfo(ligne, colonne);
+        return this.partie.player2.getInitPionWithInfo(ligne, colonne);
+    }
+
 }

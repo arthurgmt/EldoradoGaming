@@ -14,6 +14,7 @@ public class Mainmenu : MonoBehaviour
 
     public void Play()
     {
+        Screen.SetResolution(1920,1080,true);
         play.gameObject.SetActive(false);
         settings.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
@@ -28,7 +29,10 @@ public class Mainmenu : MonoBehaviour
 
     public void CloseSettings()
     {
+        SettingsMenu menu = settingsWindow.GetComponent<SettingsMenu>();
         settingsWindow.gameObject.SetActive(false);
+        GameConf gameConf = new GameConf(menu.speed, menu.volume, menu.resolution);
+        DataSaver.saveData<GameConf>(gameConf, "gameConf");
     }
 
     public void ClosePlaying()
@@ -41,13 +45,5 @@ public class Mainmenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-    public void CreateGame()
-    {
-        SceneManager.LoadScene("Partie");
-    }
-    public void JoinGame()
-    {
-
     }
 }
