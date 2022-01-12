@@ -292,7 +292,7 @@ public class Plateau : MonoBehaviour
     }
 
     [PunRPC]
-    private void RPC_EndGame(int winner)
+    private void RPC_EndGame(int winner)//RPC for game ending
     {
         PlayerPrefs.SetInt("joueur", winner);
         PhotonNetwork.LoadLevel("EndgameScene");
