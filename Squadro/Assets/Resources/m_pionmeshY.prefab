@@ -15,12 +15,12 @@ GameObject:
   - component: {fileID: 7090172883992435473}
   - component: {fileID: 1435356689363263856}
   - component: {fileID: 3959585375713459419}
-  - component: {fileID: 2310925510207797008}
+  - component: {fileID: 1928809673108154950}
   - component: {fileID: 4997474651822753389}
   - component: {fileID: 290273335242555446}
   - component: {fileID: 8309101278579330193}
   m_Layer: 9
-  m_Name: m_pionmesh
+  m_Name: m_pionmeshY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -844,7 +844,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 91cf64de0af542c469dbe589d36658ad, type: 2}
+  - {fileID: 2100000, guid: 4a91a300b083b6d45bfb6fd7e896ef47, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -921,7 +921,7 @@ MonoBehaviour:
   absolutePosition: {x: 0, y: 0, z: 0}
   absoluteLigne: 0
   absoluteColonne: 0
---- !u!114 &2310925510207797008
+--- !u!114 &1928809673108154950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

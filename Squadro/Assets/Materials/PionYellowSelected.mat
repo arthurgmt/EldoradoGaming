@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PionRed
+  m_Name: PionYellowSelected
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.9568628, g: 0.28627452, b: 0.14117648, a: 1}
-    - _EmissionColor: {r: 0.11213957, g: 0.13661973, b: 0.5283019, a: 1}
+    - _Color: {r: 0.4784314, g: 0.4784314, b: 0.078431375, a: 1}
+    - _EmissionColor: {r: 0.07227186, g: 0.07227186, b: 0.002124689, a: 1}

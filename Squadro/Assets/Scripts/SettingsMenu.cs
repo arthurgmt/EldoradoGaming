@@ -6,71 +6,31 @@ using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
 {
-
-    public Dropdown resolutionDropdown;
-
-    Resolution[] resolutions;
-
     public AudioMixer audioMixer;
     
     public Slider musicSlider;
 
-    public GameObject cam2d;
+    public Slider cameraSpeedSlider;
 
-    public GameObject cam3d;
+    public float speed;
+    public float volume;
+    public string resolution;
 
     public void Start()
     {
-        audioMixer.GetFloat("Music", out float musicValueForSlider);
-        musicSlider.value = musicValueForSlider;
-
-        // On récupère toutes les résolutions puis on fait un distinct pour ne pas les avoirs en doubles 
-        resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
-       
-        resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
-
-        int currentResolutionIndex = 0;
-
-        for (int i=0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
-            options.Add(option);
-
-            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
-
+        GameConf c = DataSaver.loadData<GameConf>("gameConf");
+        musicSlider.value = c.musicSound;
+        cameraSpeedSlider.value = c.speedCamera;
     }
-    public void SetVolume(float volume)
+    public void SetVolume()
     {
+        this.volume = musicSlider.value;
         audioMixer.SetFloat("Music", volume);
     }
 
-    public void SetFullScreen(bool isFullScreen)
+    public void SetRotation()
     {
-        Screen.fullScreen = isFullScreen;
-    }
-
-    public void SetResolution(int resolIndex)
-    {
-        Resolution resolution = resolutions[resolIndex];
-
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-
-    }
-
-    public void SetRotation(float speedrot)
-    {
-        cam3d.GetComponent<main_cam>().speed = speedrot;
-        cam2d.GetComponent<main_cam>().speed = speedrot;
+        this.speed = this.cameraSpeedSlider.value;
     }
 
 }
