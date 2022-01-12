@@ -25,7 +25,7 @@ public class Key : MonoBehaviour
         yield return new WaitUntil(predicate: () => task.IsCompleted);
         DataSnapshot ds = task.Result;
         if (ds.Exists && ds.GetValue(true).ToString().Contains("-")) {
-            //DataSaver.saveData<KeyData>(new KeyData { key = input }, "keyData");
+            DataSaver.saveData<KeyData>(new KeyData { key = input }, "keyData");
             reference.Child(input).SetValueAsync("+");
             SceneManager.LoadScene("OfficialScene");
         }
