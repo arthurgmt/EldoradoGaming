@@ -22,9 +22,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    public override void OnConnectedToMaster()// when connected to the server.
+    public override void OnConnectedToMaster()
     {
 
+    }
+
+    public override void OnJoinedLobby()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
     public void CreateRoom()// do something when the game already exists.
@@ -48,6 +53,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.LogError($"Joining random room failed becuse of {message}");
+
         PhotonNetwork.CreateRoom(null, new RoomOptions
         {
             MaxPlayers = MAX_PLAYERS,
@@ -58,5 +64,4 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         return PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers;
     }
-
 }
