@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NetPartie.unity
     guid: 49250f9df53ac64438ce0522abec3777
   - enabled: 1
+    path: Assets/Scenes/Key.unity
+    guid: ea564cafb6b52ed489c659fe21c79ee1
+  - enabled: 1
     path: Assets/Scenes/OfficialScene.unity
     guid: 385bc1a74bad51e4382646047c318bec
   - enabled: 1
