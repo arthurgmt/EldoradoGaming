@@ -23,11 +23,22 @@ public class Key : MonoBehaviour
         string input = key.text.Trim();
         var task = reference.Child(input).GetValueAsync();
         yield return new WaitUntil(predicate: () => task.IsCompleted);
-        if (task.Result.Exists) {
+        DataSnapshot ds = task.Result;
+        if (ds.Exists && ds.GetValue(true).ToString().Contains("-"))
+        {
             DataSaver.saveData<KeyData>(new KeyData { key = input }, "keyData");
+            reference.Child(input).SetValueAsync("+");
             SceneManager.LoadScene("OfficialScene");
         }
-        else Debug.LogError("there is error");
+        else
+        {
+            key.image.color = new Color(0.92f,0.16f,0.12f);
+        }
+    }
+
+    public void onChangeValueInputField()
+    {
+        key.image.color = new Color(0.78f,0.78f,0.78f);
     }
 
     private void OnSubmit()
