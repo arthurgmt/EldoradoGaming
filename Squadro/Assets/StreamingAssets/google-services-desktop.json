@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "81940751524",
-    "firebase_url": "https://squadro-cfde2-default-rtdb.firebaseio.com",
-    "project_id": "squadro-cfde2",
-    "storage_bucket": "squadro-cfde2.appspot.com"
+    "project_number": "424526411054",
+    "firebase_url": "https://squadro-74a9a-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "squadro-74a9a",
+    "storage_bucket": "squadro-74a9a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:81940751524:android:9beaca150a90abe54fb231",
+        "mobilesdk_app_id": "1:424526411054:android:1864200a07d4698cc036bf",
         "android_client_info": {
           "package_name": "com.DefaultCompany.Squadro"
         }
       },
       "oauth_client": [
         {
-          "client_id": "81940751524-b6h7p3c0v9kic0k2hmnhdc7bn5me4j01.apps.googleusercontent.com",
+          "client_id": "424526411054-durk6rbempa94ob3ss24rdl6el45c78t.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD9HWQTebuPw3daR_L7VQlPOt0Llyzcb-Y"
+          "current_key": "AIzaSyBkSNWrVuXt4YY5IW-3cu9mx_4k-Hr_naQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "81940751524-b6h7p3c0v9kic0k2hmnhdc7bn5me4j01.apps.googleusercontent.com",
+              "client_id": "424526411054-durk6rbempa94ob3ss24rdl6el45c78t.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
