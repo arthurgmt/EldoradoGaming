@@ -1512,7 +1512,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47304
+  m_Name: pb_Mesh-100480
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1916,6 +1916,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2310925510207797008, guid: 56e172a88db0e724caf4be0cdbf749c5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7090172883992435471, guid: 56e172a88db0e724caf4be0cdbf749c5,
         type: 3}
       propertyPath: m_Name
@@ -2111,7 +2116,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2310925510207797008, guid: 56e172a88db0e724caf4be0cdbf749c5, type: 3}
+    - {fileID: 3959585375713459419, guid: 56e172a88db0e724caf4be0cdbf749c5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 56e172a88db0e724caf4be0cdbf749c5, type: 3}
 --- !u!1001 &437189968
 PrefabInstance:
@@ -2218,7 +2225,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455915051}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &455915053
 Camera:
   m_ObjectHideFlags: 0
@@ -3996,6 +4003,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1928809673108154950, guid: 05ead167da1547c43855c96a78496a24,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7090172883992435471, guid: 05ead167da1547c43855c96a78496a24,
         type: 3}
       propertyPath: m_Name
@@ -4191,7 +4203,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1928809673108154950, guid: 05ead167da1547c43855c96a78496a24, type: 3}
+    - {fileID: 3959585375713459419, guid: 05ead167da1547c43855c96a78496a24, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 05ead167da1547c43855c96a78496a24, type: 3}
 --- !u!1001 &992654360
 PrefabInstance:
@@ -6668,7 +6682,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47110
+  m_Name: pb_Mesh-100290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

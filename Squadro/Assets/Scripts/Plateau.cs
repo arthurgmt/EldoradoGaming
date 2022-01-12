@@ -264,6 +264,7 @@ public class Plateau : MonoBehaviour
         if (fin)
         {
             PlayerPrefs.SetInt("joueur", joueur);
+            endGame(joueur);
         }
     }
 
@@ -288,7 +289,7 @@ public class Plateau : MonoBehaviour
 
     private void endGame(int winner)
     {
-        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { winner});
+        photonView.RPC(nameof(RPC_EndGame), RpcTarget.AllBuffered, new object[] { winner});
     }
 
     [PunRPC]
