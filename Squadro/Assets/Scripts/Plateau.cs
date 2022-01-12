@@ -264,7 +264,6 @@ public class Plateau : MonoBehaviour
         if (fin)
         {
             PlayerPrefs.SetInt("joueur", joueur);
-            PhotonNetwork.LoadLevel("EndgameScene");
         }
     }
 
@@ -287,6 +286,17 @@ public class Plateau : MonoBehaviour
         PureDeplacement(pion);
     }
 
+    private void endGame(int winner)
+    {
+        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { winner});
+    }
+
+    [PunRPC]
+    private void RPC_EndGame(int winner)
+    {
+        PlayerPrefs.SetInt("joueur", winner);
+        PhotonNetwork.LoadLevel("EndgameScene");
+    }
     private InitPion GetTheMovedPion(int joueur,int ligne,int colonne)
     {
         if (joueur == 1)

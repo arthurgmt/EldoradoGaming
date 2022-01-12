@@ -18,11 +18,15 @@ public class EndGameController : MonoBehaviour
             camPlayer2.enabled = false;
             text.text = "Player 1 has won !";
         }
-        else
+        else if(joueur == 2)
         {
             camPlayer1.enabled = false;
             camPlayer2.enabled = true;
             text.text = "Player 2 has won !";
+        }
+        else
+        {
+            Debug.LogError("There is an error");
         }
     }
 
