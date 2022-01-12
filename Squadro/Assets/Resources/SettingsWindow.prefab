@@ -476,8 +476,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51.1, y: -60.5}
-  m_SizeDelta: {x: 576.812, y: 178.0922}
+  m_AnchoredPosition: {x: -14.8, y: -100.4}
+  m_SizeDelta: {x: 708.8854, y: 257.60843}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8223163341087433360
 CanvasRenderer:
@@ -531,10 +531,8 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: dd656de0ca57e6b4ca0a288a9f77d7dd, type: 2}
   musicSlider: {fileID: 8223163342383417185}
   cameraSpeedSlider: {fileID: 0}
-  isFullScreen: {fileID: 0}
   speed: 0
   volume: 0
-  resolution: 
 --- !u!1 &8223163341255703490
 GameObject:
   m_ObjectHideFlags: 0
