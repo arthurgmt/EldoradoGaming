@@ -11,9 +11,11 @@ public class Key : MonoBehaviour
     public DatabaseReference reference;
     public Button submit;
     public InputField key;
+    public Text errorText;
     // Start is called before the first frame update
     void Start()
     {
+        submit.interactable = false;
         reference = FirebaseDatabase.DefaultInstance.RootReference;
         submit.onClick.AddListener(OnSubmit);
     }
@@ -24,20 +26,34 @@ public class Key : MonoBehaviour
         var task = reference.Child(input).GetValueAsync();
         yield return new WaitUntil(predicate: () => task.IsCompleted);
         DataSnapshot ds = task.Result;
-        if (ds.Exists && ds.GetValue(true).ToString().Contains("-")) {
-            DataSaver.saveData<KeyData>(new KeyData { key = input }, "keyData");
-            reference.Child(input).SetValueAsync("+");
-            SceneManager.LoadScene("OfficialScene");
+        if (ds.Exists)
+        {
+            if (ds.GetValue(true).ToString().Contains("-"))
+            {
+                DataSaver.saveData<KeyData>(new KeyData { key = input }, "keyData");
+                reference.Child(input).SetValueAsync("+");
+                SceneManager.LoadScene("OfficialScene");
+            }
+            else
+            {
+                errorText.text = "The key is already used";
+            }
         }
         else
         {
-            key.image.color = new Color(0.92f,0.16f,0.12f);
+            key.image.color = new Color(0.92f, 0.16f, 0.12f);
+            errorText.text = "The key doesn't exist !!";
         }
     }
 
     public void onChangeValueInputField()
     {
-        key.image.color = new Color(0.78f,0.78f,0.78f);
+        key.image.color = new Color(0.78f, 0.78f, 0.78f);
+        if(key.text.Length !=0)
+            submit.interactable = true;
+        else
+            submit.interactable = false;
+        errorText.text = "";
     }
 
     private void OnSubmit()
@@ -48,6 +64,6 @@ public class Key : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
