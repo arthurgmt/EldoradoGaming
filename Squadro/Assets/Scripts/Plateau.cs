@@ -294,16 +294,16 @@ public class Plateau : MonoBehaviour
 
     private void endTurn(int joueur, int ligne, int colonne)
     {
-        this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
         changeTheTourMaterial(this.partie.tourJoueur == 1 ? yellowPlayerMaterial : redPlayerMaterial);
+        this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
         photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { this.partie.tourJoueur, joueur, ligne, colonne });
     }
 
     [PunRPC]
     private void RPC_EndTurn(int tourJoueur, int joueur, int ligne, int colonne)
     {
-        this.partie.tourJoueur = tourJoueur;
         changeTheTourMaterial(this.partie.tourJoueur == 1 ? yellowPlayerMaterial : redPlayerMaterial);
+        this.partie.tourJoueur = tourJoueur;
         InitPion pion = GetTheMovedPion(joueur, ligne, colonne);
         PureDeplacement(pion);
     }
