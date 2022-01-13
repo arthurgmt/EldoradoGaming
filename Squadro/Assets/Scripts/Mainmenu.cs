@@ -13,7 +13,7 @@ public class Mainmenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("escape") && !settingsWindow.gameObject.activeInHierarchy)
             ClosePlaying();
     }
 
