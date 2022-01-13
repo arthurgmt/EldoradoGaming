@@ -96,12 +96,16 @@ public class Plateau : MonoBehaviour
         this.partie.setPlayer1(player1);
         Player player2 = new Player(pionsP2);
         this.partie.setPlayer2(player2);
-        int rnd = new System.Random().Next() % 2 + 1;
-        this.partie.tourJoueur = 1;
-        changeTheTourMaterial(redPlayerMaterial);
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        {
             this.localPlayer = 1;
-        else localPlayer = 2;
+            this.partie.tourJoueur = new System.Random().Next() % 2 + 1;
+            photonView.RPC(nameof(RPC_SetGameTour), RpcTarget.AllBuffered, new object[] { this.partie.tourJoueur });
+        }
+        else
+        {
+            localPlayer = 2;
+        }
     }
 
     private void Update()
@@ -329,6 +333,13 @@ public class Plateau : MonoBehaviour
         PlayerPrefs.SetInt("joueur", winner);
         PhotonNetwork.LoadLevel("EndgameScene");
     }
+
+    [PunRPC]
+    private void RPC_SetGameTour(int joueur)
+    {
+        this.partie.tourJoueur = joueur;
+        changeTheTourMaterial(this.partie.tourJoueur == 1 ? redPlayerMaterial : yellowPlayerMaterial);
+    }
     private InitPion GetTheMovedPion(int joueur, int ligne, int colonne)
     {
         if (joueur == 1)
@@ -340,7 +351,10 @@ public class Plateau : MonoBehaviour
     {
         GameObject[] spheres = GameObject.FindGameObjectsWithTag("Sphere");
         foreach (GameObject g in spheres)
+        {
             g.GetComponent<Renderer>().material = material;
-    }
+            g.GetComponent<Renderer>().enabled = true;
+        }
 
+    }
 }

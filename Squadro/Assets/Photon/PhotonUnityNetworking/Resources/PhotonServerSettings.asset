@@ -42,6 +42,7 @@ MonoBehaviour:
   - RPC_EndTurn
   - RPC_loadPlayingRoom
   - RPC_EndGame
+  - RPC_SetGameTour
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
