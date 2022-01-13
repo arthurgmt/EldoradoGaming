@@ -1425,7 +1425,6 @@ MonoBehaviour:
     type: 3}
   SelectedPion: {fileID: 7090172883992435471, guid: 4abbe8f903e972740abe40667c91e494,
     type: 3}
-  confirmButton: {fileID: 0}
   localPlayer: 0
 --- !u!114 &434766923
 MonoBehaviour:
@@ -1958,7 +1957,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh222592
+  m_Name: pb_Mesh132930
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

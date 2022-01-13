@@ -12,7 +12,6 @@ public class Plateau : MonoBehaviour
     public GameObject myPrefabRed;
     public GameObject myPrefabYellow;
     public GameObject SelectedPion;
-    public Button confirmButton;
 
     private bool[,] plateau = new bool[7, 7];
 
