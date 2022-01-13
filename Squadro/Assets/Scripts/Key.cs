@@ -56,6 +56,11 @@ public class Key : MonoBehaviour
         errorText.text = "";
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     private void OnSubmit()
     {
         StartCoroutine(Submit());
