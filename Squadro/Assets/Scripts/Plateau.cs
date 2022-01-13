@@ -12,6 +12,9 @@ public class Plateau : MonoBehaviour
     public GameObject myPrefabRed;
     public GameObject myPrefabYellow;
     public GameObject SelectedPion;
+    public GameObject tour;
+    public Material redPlayerMaterial;
+    public Material yellowPlayerMaterial;
 
     private bool[,] plateau = new bool[7, 7];
 
@@ -85,6 +88,7 @@ public class Plateau : MonoBehaviour
         Player player2 = new Player(pionsP2);
         this.partie.setPlayer2(player2);
         this.partie.tourJoueur = 1;
+        changeTheTourMaterial(redPlayerMaterial);
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
             this.localPlayer = 1;
         else localPlayer = 2;
@@ -291,6 +295,7 @@ public class Plateau : MonoBehaviour
     private void endTurn(int joueur, int ligne, int colonne)
     {
         this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
+        changeTheTourMaterial(this.partie.tourJoueur == 1 ? yellowPlayerMaterial : redPlayerMaterial);
         photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { this.partie.tourJoueur, joueur, ligne, colonne });
     }
 
@@ -298,6 +303,7 @@ public class Plateau : MonoBehaviour
     private void RPC_EndTurn(int tourJoueur, int joueur, int ligne, int colonne)
     {
         this.partie.tourJoueur = tourJoueur;
+        changeTheTourMaterial(this.partie.tourJoueur == 1 ? yellowPlayerMaterial : redPlayerMaterial);
         InitPion pion = GetTheMovedPion(joueur, ligne, colonne);
         PureDeplacement(pion);
     }
@@ -318,6 +324,13 @@ public class Plateau : MonoBehaviour
         if (joueur == 1)
             return this.partie.player1.getInitPionWithInfo(ligne, colonne);
         return this.partie.player2.getInitPionWithInfo(ligne, colonne);
+    }
+
+    private void changeTheTourMaterial(Material material)
+    {
+        GameObject[] spheres = GameObject.FindGameObjectsWithTag("Sphere");
+        foreach (GameObject g in spheres)
+            g.GetComponent<Renderer>().material = material;
     }
 
 }

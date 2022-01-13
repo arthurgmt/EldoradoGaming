@@ -28,6 +28,7 @@ TagManager:
   - Plateau
   - ConfirmButton
   - SettingWindow
+  - Sphere
   layers:
   - Default
   - TransparentFX
