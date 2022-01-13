@@ -11,6 +11,12 @@ public class Mainmenu : MonoBehaviour
     public GameObject settingsWindow;
     public GameObject playingWindow;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+            ClosePlaying();
+    }
+
 
     public void Play()
     {
