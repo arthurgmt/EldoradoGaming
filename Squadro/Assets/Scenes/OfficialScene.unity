@@ -6181,7 +6181,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-85090
+  m_Name: pb_Mesh-13362
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6483,12 +6483,12 @@ PrefabInstance:
     - target: {fileID: 3603669908143640702, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5196800861065219476, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5657456339677239198, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}
@@ -6533,7 +6533,7 @@ PrefabInstance:
     - target: {fileID: 6372489550485091149, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6823129231155963355, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}
@@ -6938,7 +6938,7 @@ PrefabInstance:
     - target: {fileID: 8902120991973524198, guid: f374c4bd4b458fc4ebeb1f98361feb24,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f374c4bd4b458fc4ebeb1f98361feb24, type: 3}
@@ -7736,7 +7736,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -450, y: -75.8}
+  m_AnchoredPosition: {x: -423, y: -75.8}
   m_SizeDelta: {x: 547.49835, y: 54.49822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090421213
