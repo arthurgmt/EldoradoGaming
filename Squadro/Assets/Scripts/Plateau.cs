@@ -361,6 +361,8 @@ public class Plateau : MonoBehaviour
             g.GetComponent<Renderer>().material = material;
             g.GetComponent<Renderer>().enabled = true;
         }
-
+        tour.GetComponent<Animator>().SetBool("action", true);
+        tour.GetComponent<Animator>().Play("fall");
     }
+
 }
