@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Plateau : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class Plateau : MonoBehaviour
     private void Start()
     {
         GameConf c = DataSaver.loadData<GameConf>("gameConf");
-        mainCam.GetComponent<main_cam>().speed = c.speedCamera;
+        if (c != null)
+            mainCam.GetComponent<main_cam>().speed = c.speedCamera;
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -104,6 +106,20 @@ public class Plateau : MonoBehaviour
                 cam.enabled = false;
             }
         }
+        else if (Input.GetKeyDown("escape"))
+        {
+            PlayerPrefs.SetInt("joueur", localPlayer == 1 ? 2 : 1);
+            StartCoroutine(WaitForDisconnect());
+        }
+    }
+
+    private IEnumerator WaitForDisconnect()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        while (PhotonNetwork.IsConnected)
+            yield return 0;
+        SceneManager.LoadScene("OfficialScene");
     }
 
     public void DeplacerPion() // A compléter.
@@ -115,7 +131,7 @@ public class Plateau : MonoBehaviour
         PureDeplacement(pion);
         SelectedPion = null;
         pion.GetComponent<SelectPion>().UnShowMove(pion.joueur);
-        endTurn(pion.joueur,ligne,colonne);
+        endTurn(pion.joueur, ligne, colonne);
     }
 
     public void PureDeplacement(InitPion pion) // A compléter.
@@ -273,14 +289,14 @@ public class Plateau : MonoBehaviour
         return this.partie;
     }
 
-    private void endTurn(int joueur,int ligne,int colonne)
+    private void endTurn(int joueur, int ligne, int colonne)
     {
         this.partie.tourJoueur = this.partie.tourJoueur == 1 ? 2 : 1;
-        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { this.partie.tourJoueur,joueur,ligne,colonne });
+        photonView.RPC(nameof(RPC_EndTurn), RpcTarget.OthersBuffered, new object[] { this.partie.tourJoueur, joueur, ligne, colonne });
     }
 
     [PunRPC]
-    private void RPC_EndTurn(int tourJoueur,int joueur,int ligne,int colonne)
+    private void RPC_EndTurn(int tourJoueur, int joueur, int ligne, int colonne)
     {
         this.partie.tourJoueur = tourJoueur;
         InitPion pion = GetTheMovedPion(joueur, ligne, colonne);
@@ -289,7 +305,7 @@ public class Plateau : MonoBehaviour
 
     private void endGame(int winner)
     {
-        photonView.RPC(nameof(RPC_EndGame), RpcTarget.AllBuffered, new object[] { winner});
+        photonView.RPC(nameof(RPC_EndGame), RpcTarget.AllBuffered, new object[] { winner });
     }
 
     [PunRPC]
@@ -298,7 +314,7 @@ public class Plateau : MonoBehaviour
         PlayerPrefs.SetInt("joueur", winner);
         PhotonNetwork.LoadLevel("EndgameScene");
     }
-    private InitPion GetTheMovedPion(int joueur,int ligne,int colonne)
+    private InitPion GetTheMovedPion(int joueur, int ligne, int colonne)
     {
         if (joueur == 1)
             return this.partie.player1.getInitPionWithInfo(ligne, colonne);

@@ -15,6 +15,7 @@ public class NetwokGameManagement : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
+        PlayerPrefs.SetInt("joueur", otherPlayer.ActorNumber == 1 ? 2 : 1);
         SceneManager.LoadScene("EndgameScene");
     }
 }
