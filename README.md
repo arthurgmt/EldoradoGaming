@@ -1,5 +1,5 @@
 # SQUADRO
-##Installation du jeu :
+## Installation du jeu :
 
 SQUADRO ne nécessite aucune installation d’un logiciel ou librairie externe pour
 fonctionner. Le jeu sera disponible sur toutes les machines possédant un système Windows
