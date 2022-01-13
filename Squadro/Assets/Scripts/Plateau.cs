@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 public class Plateau : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Plateau : MonoBehaviour
     public GameObject tour;
     public Material redPlayerMaterial;
     public Material yellowPlayerMaterial;
-
+    public AudioSource audio;
     private bool[,] plateau = new bool[7, 7];
 
     private int[] arrayOfNbCasesDepart = new int[] { 1, 3, 2, 3, 1 };
@@ -36,7 +37,15 @@ public class Plateau : MonoBehaviour
     {
         GameConf c = DataSaver.loadData<GameConf>("gameConf");
         if (c != null)
+        {
             mainCam.GetComponent<main_cam>().speed = c.speedCamera;
+            audio.volume = c.musicSound;
+        }
+        else
+        {
+            mainCam.GetComponent<main_cam>().speed = 5;
+            audio.volume = 0.3f;
+        }
         float initialValue = 21.4f;
         // Camera Setup
         cam.enabled = true;
@@ -87,6 +96,7 @@ public class Plateau : MonoBehaviour
         this.partie.setPlayer1(player1);
         Player player2 = new Player(pionsP2);
         this.partie.setPlayer2(player2);
+        int rnd = new System.Random().Next() % 2 + 1;
         this.partie.tourJoueur = 1;
         changeTheTourMaterial(redPlayerMaterial);
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)

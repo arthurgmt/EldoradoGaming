@@ -45,7 +45,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.JoinRandomRoom(null, MAX_PLAYERS);
     }
 
-    public override void OnJoinedRoom()
+    public override void OnJoinedRoom() 
     {
         PhotonNetwork.LoadLevel("Lobby");
     }
