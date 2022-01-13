@@ -98,12 +98,18 @@ public class Plateau : MonoBehaviour
         this.partie.setPlayer2(player2);
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
         {
+            cam.transform.localPosition = new Vector3(1.282f, 0.819f, -0.015f);
+            cam.transform.localRotation = Quaternion.Euler(33.16f, -89.65501f, 0f);
             this.localPlayer = 1;
             this.partie.tourJoueur = new System.Random().Next() % 2 + 1;
             photonView.RPC(nameof(RPC_SetGameTour), RpcTarget.AllBuffered, new object[] { this.partie.tourJoueur });
         }
         else
         {
+            cam.transform.localPosition = new Vector3(0.061f, 0.819f, 1.371f);
+            cam.transform.localRotation = Quaternion.Euler(33.16f, -177.213f, 0f);
+
+            // cam.transform.position = new Vector3(64.3f, 43.8f, 4.1f);
             localPlayer = 2;
         }
     }
