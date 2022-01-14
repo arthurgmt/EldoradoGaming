@@ -61,6 +61,11 @@ public class Key : MonoBehaviour
         Application.Quit();
     }
 
+    public void OpenWebsite()
+    {
+        Application.OpenURL("https://valhalaconnectsu.myshopify.com/"); ;
+    }
+
     private void OnSubmit()
     {
         StartCoroutine(Submit());
